@@ -1,0 +1,104 @@
+@import (reference) '../../Common.less';
+
+@card-width: 200px;
+
+.ModalComparePerformance {
+  .InstrumentLongTermStatistics {
+    width: @card-width;
+  }
+  display: flex;
+  justify-content: space-between;
+  &__item-to-compare {
+    width: @card-width;
+  }
+  &__item-to-compare-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    .anticon-close-circle {
+      font-size: 23px;
+      position: absolute;
+      top: 6px;
+      right: 0;
+      cursor: pointer;
+      &:hover {
+        color: @primary-color;
+      }
+    }
+  }
+  .Avatar {
+    height: 34px !important;
+    width: 34px !important;
+    min-width: unset !important;
+  }
+  .InstrumentLongTermStatistics {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+  .ant-select-auto-complete {
+    max-width: @card-width;
+  }
+  .ObjectCard,
+  UserCard {
+    &:first-child {
+      width: @card-width;
+    }
+  }
+}
+
+.ModalComparePerformance__autocomplete-option.ant-select-dropdown-menu-item-active {
+  background-color: @white;
+  &:hover {
+    background-color: @white-darker;
+  }
+}
+
+.ModalComparePerformance__autocomplete-option.ant-select-dropdown-menu-item {
+  max-width: 200px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  font-weight: bold;
+  border-bottom: @base-border;
+  padding: 10px 10px;
+}
+.ModalComparePerformance__autocomplete-option
+  > .ObjectCard
+  > .ObjectCard__top
+  > .ObjectCard__links {
+  width: 140px;
+}
+
+.ModalComparePerformance__autocomplete-option {
+  & > .ObjectCard {
+    padding: 0;
+  }
+  & > .Topnav__search-content-small {
+    display: none;
+  }
+}
+
+.ModalComparePerformance__autocomplete-dropdown.ant-select-dropdown {
+  .ant-select-dropdown-menu-item-group-title {
+    border-bottom: 1px solid @white-gainsboro;
+  }
+}
+
+.nightmode {
+  .ModalComparePerformance__autocomplete-dropdown.ant-select-dropdown {
+    background: @grey-nero;
+    border: 1px solid @normal-grey;
+    .ant-select-dropdown-menu-item-group-title {
+      border-bottom: 1px solid @normal-grey;
+      color: @blue-botticelli;
+    }
+    .ModalComparePerformance__autocomplete-option {
+      border: none;
+      border-bottom: 1px solid @normal-grey;
+      & > .ObjectCard {
+        border: none;
+      }
+    }
+  }
+}

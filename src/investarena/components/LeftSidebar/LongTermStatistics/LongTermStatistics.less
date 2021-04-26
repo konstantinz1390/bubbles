@@ -1,0 +1,21 @@
+@import (reference) '../../../../client/styles/custom.less';
+@import (reference) '../../../../client/styles/modules/variables.less';
+
+.InstrumentLongTermStatistics {
+  .button-compare {
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+
+.PeriodStatisticsLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__value-success {
+    color: @green;
+  }
+  &__value-danger {
+    color: @red;
+  }
+}
