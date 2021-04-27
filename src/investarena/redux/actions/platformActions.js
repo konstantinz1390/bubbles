@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import apiExtra from '../../apiExtra/Account';
-import { authorizeTokenSuccess } from './userActions';
 import { singleton } from '../../platform/singletonPlatform';
+import { authorizeTokenSuccess } from './userActions';
 
 export const AUTHORIZE_TOKEN_SUCCESS = 'AUTHORIZE_TOKEN_SUCCESS';
 export const CONNECT_PLATFORM_REQUEST = 'CONNECT_PLATFORM_REQUEST';
@@ -12,6 +12,7 @@ export const GET_CHART_DATA = 'GET_CHART_DATA';
 export const GET_CHART_DATA_SUCCESS = 'GET_CHART_DATA_SUCCESS';
 export const UPDATE_USER_ACCOUNT_CURRENCY = 'UPDATE_USER_ACCOUNT_CURRENCY';
 export const UPDATE_USER_ACCOUNTS = 'UPDATE_USER_ACCOUNTS';
+export const USER_TRADING_SETTINGS = 'USER_TRADING_SETTINGS';
 
 const localStorageData = [
   'sid',
@@ -25,14 +26,12 @@ const localStorageData = [
   'email',
 ];
 const cookiesData = ['platformName'];
-
 export function connectPlatform() {
   return dispatch => {
     singleton.createWebSocketConnection();
     dispatch(connectPlatformRequest());
   };
 }
-
 export function authorizeToken(token) {
   return dispatch => {
     apiExtra.logonWithToken(token).then(({ data, error }) => {
@@ -49,7 +48,6 @@ export function authorizeToken(token) {
     });
   };
 }
-
 export function checkAccountId() {
   return dispatch => {
     const accounts = localStorage.getItem('accounts');
@@ -62,7 +60,6 @@ export function checkAccountId() {
     }
   };
 }
-
 export function disconnectPlatform() {
   localStorageData.forEach(data => {
     localStorage.removeItem(data);
@@ -73,15 +70,12 @@ export function disconnectPlatform() {
   singleton.closeWebSocketConnection();
   singleton.platform = 'widgets';
 }
-
 export function connectPlatformRequest() {
   return { type: CONNECT_PLATFORM_REQUEST };
 }
-
 export function connectPlatformSuccess(platformName) {
   return { type: CONNECT_PLATFORM_SUCCESS, payload: platformName };
 }
-
 export function updateUserStatistics(balance) {
   return { type: UPDATE_USER_STATISTICS, payload: balance };
 }
@@ -93,4 +87,7 @@ export function updateUserAccounts(accountsData) {
 }
 export function connectPlatformError() {
   return { type: CONNECT_PLATFORM_ERROR };
+}
+export function setUserTradingSettings(payload) {
+  return { type: USER_TRADING_SETTINGS, payload };
 }

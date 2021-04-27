@@ -1,16 +1,30 @@
+import { Button, Layout } from 'antd';
+import 'antd/dist/antd.css';
 import React from 'react';
-import { Counter } from './features/counter/Counter';
+import { IntlProvider } from 'react-intl';
+import { useDispatch } from 'react-redux';
 import './App.css';
+import { Counter } from './features/counter/Counter';
+import ModalBroker from './investarena/components/Modals/ModalBroker';
+import { toggleModal } from './investarena/redux/actions/modalsActions';
 
 function App() {
+  const { Header } = Layout;
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(toggleModal('broker'));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
+    <IntlProvider locale="en" messages={{}}>
+      <div className="App">
+        <header className="App-header">
+          <Counter/>
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <span>
           <span>Learn </span>
           <a
             className="App-link"
@@ -48,8 +62,16 @@ function App() {
             React Redux
           </a>
         </span>
-      </header>
-    </div>
+        </header>
+        <Layout>
+          <Header>
+            <Button type="primary" onClick={handleClick}>Your broker</Button>
+            <Button type="primary" danger>Disconnect</Button>
+          </Header>
+        </Layout>
+        <ModalBroker/>
+      </div>
+    </IntlProvider>
   );
 }
 

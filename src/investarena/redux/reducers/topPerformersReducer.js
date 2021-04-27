@@ -14,7 +14,7 @@ const initialState = {
   },
 };
 
-export default (state = initialState, action) => {
+export default function topPerformersReducer (state = initialState, action) {
   switch (action.type) {
     case topPerformersTypes.GET_PERFORMERS_STATS_START:
       return { ...state, loading: true };

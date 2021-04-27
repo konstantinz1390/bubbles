@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { TOGGLE_MODAL } from '../actions/modalsActions';
-import { LOGOUT } from '../../../client/auth/authActions';
+// import { LOGOUT } from '../../../client/auth/authActions';
 
 const initialState = { modals: [], modalsInfo: {} };
 
@@ -20,12 +20,12 @@ function toggleModal(state, action) {
   };
 }
 
-export default function(state = initialState, action) {
+export default function modalsReducer(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_MODAL:
       return toggleModal(state, action);
-    case LOGOUT:
-      return initialState;
+    // case LOGOUT:
+    //   return initialState;
     default:
       return state;
   }

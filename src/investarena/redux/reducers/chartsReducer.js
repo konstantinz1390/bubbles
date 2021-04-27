@@ -1,13 +1,13 @@
 import _ from 'lodash';
 import { GET_CHART_DATA_SUCCESS, GET_CHARTS_DATA_SUCCESS } from '../../redux/actions/chartsActions';
-import { quoteIdForWidget } from '../../constants/constantsWidgets';
+import { QUOTE_WIDGETS_ID } from '../../constants/constantsWidgets';
 
 const initialState = {};
 
 function parseCharts(charts) {
   const result = {};
   _.forEach(charts, chart => {
-    const quote = _.invert(quoteIdForWidget)[chart.id];
+    const quote = _.invert(QUOTE_WIDGETS_ID)[chart.id];
 
     if (quote && chart.closeAsk) {
       result[quote] = _.map(chart.closeAsk.reverse(), (price, index) => ({
@@ -37,7 +37,7 @@ function updateChart(state, payload) {
     };
   }
 }
-export default function(state = initialState, action) {
+export default function chartsReducer(state = initialState, action) {
   switch (action.type) {
     case GET_CHART_DATA_SUCCESS:
       return updateChart(state, action.payload);

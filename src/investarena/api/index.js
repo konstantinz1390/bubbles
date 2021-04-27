@@ -9,7 +9,7 @@ import Statistics from './Statistics';
 import ApiClient from './ApiClient';
 import QuickForecast from './QuickForecast';
 
-export default function({ apiPrefix } = {}) {
+export default function api({ apiPrefix } = {}) {
   const api = new ApiClient({ prefix: apiPrefix });
   const apiForecast = new ApiClient({ prefix: '' });
 

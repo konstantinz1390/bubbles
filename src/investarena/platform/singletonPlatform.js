@@ -1,18 +1,12 @@
 import Cookies from 'js-cookie';
+import { BROKERS_LIST } from '../constants/platform';
 import { Umarkets } from './umarkets';
 import { Widgets } from './widgets';
 
-const platforms = {
-  umarkets: Umarkets,
-  maximarkets: Umarkets,
-  maxitrade: Umarkets,
-  tradeallcrypto: Umarkets,
-  tradiva: Umarkets,
-  '770capital': Umarkets,
-  dowmarkets: Umarkets,
-  limefx: Umarkets,
-  widgets: Widgets,
-};
+const platforms = BROKERS_LIST.reduce((acc, brokerName) => {
+  acc[brokerName] = Umarkets;
+  return acc;
+}, { widgets: Widgets });
 
 let instance = null;
 let store = null;

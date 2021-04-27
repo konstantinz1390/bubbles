@@ -1,190 +1,455 @@
 {
-  "appVersion": "ST Investarena v.2.0.0",
-  "app": "Investarena.com",
-  "version": "2.0.0",
+  "appVersion": "ST Investarena Bubbles v.1.0.0",
   "production": {
-    "apiPrefix": "https://investarena.com/",
+    "apiPrefix": "https://api.investarena.com/",
     "brokerWSUrl": {
-      "maximarkets": "https://trading.maximarkets.org/stomp/",
-      "umarkets": "https://trading.umarkets.com/stomp/",
-      "maxitrade": "https://trading.maxitrade.com/stomp/",
-      "tradeallcrypto": "https://trading.tradeallcrypto.com/stomp/",
-      "tradiva": "https://trading.tradiva.com/stomp/",
-      "770capital": "https://trading.770capital.com/stomp/",
-      "dowmarkets": "https://trading.dowmarkets.com/stomp/",
-      "limefx": "https://trading.limefx.com/stomp/",
-
-      "widgets": "wss://informer.maximarkets.org/wss/Server.ashx?subscriber=true"
+      "proxyWsUrl": "wss://api.investarena.com/bots_service/ws",
+      "platformDomain": {
+        "maximarkets": "trading.maximarkets.net",
+        "umarkets": "trading.umarkets.info",
+        "tradeallcrypto": "trading.tradeallcrypto.com",
+        "tradiva": "trading.tradiva.com",
+        "770capital": "trading.770capital.com",
+        "limefx": "trading.limefx.com",
+        "goldflame": "trading.goldflame.io",
+        "irotradex": "trading.irotradex.com",
+        "maxitrade": "trading.maxitrade.com",
+        "dowmarkets": "trading.dowmarkets.com",
+        "lexatrade": "trading.lexatrade.com",
+        "investingvip": "trading.investingvip.com",
+        "powertrend": "trading.prtrend.org"
+      },
+      "widgets": "wss://informer.maximarkets.net/wss/Server.ashx?subscriber=true"
     },
     "platformDepositUrl": {
-      "umarkets": "https://my.umarkets.com/",
-      "maximarkets": "https://myaccount.maximarkets.org/",
-      "maxitrade": "https://myaccount.maxitrade.com/",
-      "tradeallcrypto": "https://myaccount.tradeallcrypto.com/",
-      "tradiva": "https://myaccount.tradiva.com/",
-      "770capital": "https://myaccount.770capital.com/",
-      "dowmarkets": "https://myaccount.dowmarkets.com/",
-      "limefx": "https://myaccount.limefx.com/",
-      "widgets": "wss://informer.maximarkets.org/wss/Server.ashx?subscriber=true"
+      "umarkets": "https://myaccountnew.umarkets.info/deposit",
+      "maximarkets": "https://myaccountnew.maximarkets.net/deposit",
+      "tradeallcrypto": "https://myaccountnew.tradeallcrypto.com/deposit",
+      "tradiva": "https://myaccountnew.tradiva.com/deposit",
+      "770capital": "https://myaccountnew.770capital.com/deposit",
+      "limefx": "https://myaccountnew.limefx.com/deposit",
+      "goldflame": "https://myaccountnew.goldflame.io/deposit",
+      "irotradex": "https://myaccountnew.irotradex.com/deposit",
+      "maxitrade": "https://myaccountnew.maxitrade.com/deposit",
+      "dowmarkets": "https://myaccountnew.dowmarkets.com/deposit",
+      "lexatrade": "https://myaccountnew.lexatrade.com/deposit",
+      "investingvip": "https://myaccountnew.investingvip.com/deposit",
+      "powertrend": "https://myaccountnew.prtrend.org/deposit",
+      "widgets": "wss://informer.maximarkets.net/wss/Server.ashx?subscriber=true"
     },
-    "webSocketUrl": "https://wss.socialtrading.uat.pp.ua/"
+    "webSocketUrl": "https://wss.investarena.com/",
+    "repostUrl": "https://investarena.com/posts/",
+    "shareLinksUrl": {
+      "facebook": "http://www.facebook.com/sharer.php?u=https://investarena.com/posts/",
+      "telegram": "https://t.me/share/url?url=https://investarena.com/posts/",
+      "whatsapp": "https://wa.me/?text=https://investarena.com/posts/"
+    },
+    "shareInvitationLinksUrl": {
+      "facebook": "http://www.facebook.com/sharer.php?u=",
+      "vkontakte": "http://vkontakte.ru/share.php?url=",
+      "google": "https://plus.google.com/share?url="
+    },
+    "captcha": {
+      "siteKey": "6Ld4gEcUAAAAAPZRi9qzMFRMxoGFx6sLJTqQH_Lo",
+      "secretKey": "6Ld4gEcUAAAAAILNELlwGVZrq6R09moCQETpoFDD"
+    },
+    "logonWithToken": {
+      "maximarkets": "https://api.maximarkets.net/account/logonWithToken?token=",
+      "umarkets": "https://api.umarkets.info/account/logonWithToken?token=",
+      "limefx": "https://api.limefx.com/account/logonWithToken?token=",
+      "tradeallcrypto": "https://api.tradeallcrypto.com/account/logonWithToken?token=",
+      "goldflame": "https://api.goldflame.io/account/logonWithToken?token=",
+      "irotradex": "https://api.irotradex.com/account/logonWithToken?token=",
+      "maxitrade": "https://api.maxitrade.com/account/logonWithToken?token=",
+      "dowmarkets": "https://api.dowmarkets.com/account/logonWithToken?token=",
+      "lexatrade": "https://api.lexatrade.com/account/logonWithToken?token=",
+      "investingvip": "https://api.investingvip.com/account/logonWithToken?token=",
+      "powertrend": "https://api.prtrend.org/account/logonWithToken?token="
+    }
   },
   "staging": {
-    "apiPrefix": "https://investarena.waiviodev.com/",
+    "apiPrefix": "https://api.investarena.pp.ua/",
+    "": "https://api.investarena.com/",
     "brokerWSUrl": {
-      "maximarkets": "https://trading.maximarkets.org/stomp/",
-      "umarkets": "https://trading.umarkets.com/stomp/",
-      "maxitrade": "https://trading.maxitrade.com/stomp/",
-      "tradeallcrypto": "https://trading.tradeallcrypto.com/stomp/",
-      "tradiva": "https://trading.tradiva.com/stomp/",
-      "770capital": "https://trading.770capital.com/stomp/",
-      "dowmarkets": "https://trading.dowmarkets.com/stomp/",
-      "limefx": "https://trading.limefx.com/stomp/",
-      "widgets": "wss://informer.maximarkets.org/wss/Server.ashx?subscriber=true"
+      "proxyWsUrl": "wss://api.investarena.pp.ua/bots_service/ws",
+      "platformDomain": {
+        "maximarkets": "uat-trading.maximarkets.net",
+        "umarkets": "uat-trading.umarkets.info",
+        "tradeallcrypto": "uat-trading.tradeallcrypto.com",
+        "tradiva": "uat-trading.tradiva.com",
+        "770capital": "uat-trading.770capital.com",
+        "limefx": "uat-trading.limefx.com",
+        "goldflame": "uat-trading.goldflame.io",
+        "irotradex": "uat-trading.irotradex.com",
+        "maxitrade": "uat-trading.maxitrade.com",
+        "dowmarkets": "uat-trading.dowmarkets.com",
+        "lexatrade": "uat-trading.lexatrade.com",
+        "investingvip": "uat-trading.investingvip.com",
+        "powertrend": "uat-trading.prtrend.org"
+      },
+      "widgets": "wss://informer.maximarkets.net/wss/Server.ashx?subscriber=true"
     },
     "platformDepositUrl": {
-      "umarkets": "https://my.umarkets.com/",
-      "maximarkets": "https://myaccount.maximarkets.org/",
-      "maxitrade": "https://myaccount.maxitrade.com/",
-      "tradeallcrypto": "https://myaccount.tradeallcrypto.com/",
-      "tradiva": "https://myaccount.tradiva.com/",
-      "770capital": "https://myaccount.770capital.com/",
-      "dowmarkets": "https://myaccount.dowmarkets.com/",
-      "limefx": "https://myaccount.limefx.com/"
+      "umarkets": "https://test-myaccountnew.umarkets.info/deposit",
+      "maximarkets": "https://test-myaccountnew.maximarkets.net/deposit",
+      "tradeallcrypto": "https://test-myaccountnew.tradeallcrypto.com/deposit",
+      "tradiva": "https://test-myaccountnew.tradiva.com/deposit",
+      "770capital": "https://test-myaccountnew.770capital.com/deposit",
+      "limefx": "https://test-myaccountnew.limefx.com/deposit",
+      "goldflame": "https://test-myaccountnew.goldflame.io/deposit",
+      "irotradex": "https://test-myaccountnew.irotradex.com/deposit",
+      "maxitrade": "https://test-myaccountnew.maxitrade.com/deposit",
+      "dowmarkets": "https://test-myaccountnew.dowmarkets.com/deposit",
+      "lexatrade": "https://test-myaccountnew.lexatrade.com/deposit",
+      "investingvip": "https://test-myaccountnew.investingvip.com/deposit",
+      "powertrend": "https://test-myaccountnew.prtrend.org/deposit",
+      "widgets": "wss://informer.maximarkets.net/wss/Server.ashx?subscriber=true"
     },
-    "webSocketUrl": "https://wss.socialtrading.uat.pp.ua/"
+    "webSocketUrl": "https://wss.investarena.pp.ua/",
+    "repostUrl": "https://investarena.pp.ua/posts/",
+    "shareLinksUrl": {
+      "facebook": "http://www.facebook.com/sharer.php?u=https://investarena.pp.ua/posts/",
+      "telegram": "https://t.me/share/url?url=https://investarena.pp.ua/posts/",
+      "whatsapp": "https://wa.me/?text=https://investarena.pp.ua/posts/"
+    },
+    "shareInvitationLinksUrl": {
+      "facebook": "http://www.facebook.com/sharer.php?u=",
+      "vkontakte": "http://vkontakte.ru/share.php?url=",
+      "google": "https://plus.google.com/share?url="
+    },
+    "captcha": {
+      "siteKey": "6Ld4gEcUAAAAAPZRi9qzMFRMxoGFx6sLJTqQH_Lo",
+      "secretKey": "6Ld4gEcUAAAAAILNELlwGVZrq6R09moCQETpoFDD"
+    },
+    "logonWithToken": {
+      "maximarkets": "https://test-api.maximarkets.net/account/logonWithToken?token=",
+      "umarkets": "https://test-api.umarkets.info/account/logonWithToken?token=",
+      "limefx": "https://test-api.limefx.com/account/logonWithToken?token=",
+      "tradeallcrypto": "https://test-api.tradeallcrypto.com/account/logonWithToken?token=",
+      "goldflame": "https://test-api.goldflame.io/account/logonWithToken?token=",
+      "irotradex": "https://test-api.irotradex.com/account/logonWithToken?token=",
+      "maxitrade": "https://test-api.maxitrade.com/account/logonWithToken?token=",
+      "dowmarkets": "https://test-api.dowmarkets.com/account/logonWithToken?token=",
+      "lexatrade": "https://test-api.lexatrade.com/account/logonWithToken?token=",
+      "investingvip": "https://test-api.investingvip.com/account/logonWithToken?token=",
+      "powertrend": "https://test-api.prtrend.org/account/logonWithToken?token="
+    }
   },
   "development": {
-    "": "http://localhost:8095/",
-    "apiPrefix": "https://investarena.waiviodev.com/",
+    "": "http://localhost:3000/",
+    "apiPrefix": "https://api.investarena.pp.ua/",
+    "": "https://api.investarena.com/",
     "brokerWSUrl": {
-      "maximarkets": "https://trading.maximarkets.org/stomp/",
-      "umarkets": "https://trading.umarkets.com/stomp/",
-      "maxitrade": "https://trading.maxitrade.com/stomp/",
-      "tradeallcrypto": "https://trading.tradeallcrypto.com/stomp/",
-      "tradiva": "https://trading.tradiva.com/stomp/",
-      "770capital": "https://trading.770capital.com/stomp/",
-      "dowmarkets": "https://trading.dowmarkets.com/stomp/",
-      "limefx": "https://trading.limefx.com/stomp/",
-      "widgets": "wss://informer.maximarkets.org/wss/Server.ashx?subscriber=true"
+      "proxyWsUrl": "wss://api.investarena.pp.ua/bots_service/ws",
+      "platformDomain": {
+        "maximarkets": "uat-trading.maximarkets.net",
+        "umarkets": "uat-trading.umarkets.info",
+        "tradeallcrypto": "uat-trading.tradeallcrypto.com",
+        "tradiva": "uat-trading.tradiva.com",
+        "770capital": "uat-trading.770capital.com",
+        "limefx": "uat-trading.limefx.com",
+        "goldflame": "uat-trading.goldflame.io",
+        "irotradex": "uat-trading.irotradex.com",
+        "maxitrade": "uat-trading.maxitrade.com",
+        "dowmarkets": "uat-trading.dowmarkets.com",
+        "lexatrade": "uat-trading.lexatrade.com",
+        "investingvip": "uat-trading.investingvip.com",
+        "powertrend": "uat-trading.prtrend.org"
+      },
+      "widgets": "wss://informer.maximarkets.net/wss/Server.ashx?subscriber=true"
     },
     "platformDepositUrl": {
-      "umarkets": "https://my.umarkets.com/",
-      "maximarkets": "https://myaccount.maximarkets.org/",
-      "maxitrade": "https://myaccount.maxitrade.com/",
-      "tradeallcrypto": "https://myaccount.tradeallcrypto.com/",
-      "tradiva": "https://myaccount.tradiva.com/",
-      "770capital": "https://myaccount.770capital.com/",
-      "dowmarkets": "https://myaccount.dowmarkets.com/",
-      "limefx": "https://myaccount.limefx.com/"
+      "umarkets": "https://test-myaccountnew.umarkets.info/deposit",
+      "maximarkets": "https://test-myaccountnew.maximarkets.net/deposit",
+      "tradeallcrypto": "https://test-myaccountnew.tradeallcrypto.com/deposit",
+      "tradiva": "https://test-myaccountnew.tradiva.com/deposit",
+      "770capital": "https://test-myaccountnew.770capital.com/deposit",
+      "limefx": "https://test-myaccountnew.limefx.com/deposit",
+      "goldflame": "https://test-myaccountnew.goldflame.io/deposit",
+      "irotradex": "https://test-myaccountnew.irotradex.com/deposit",
+      "maxitrade": "https://test-myaccountnew.maxitrade.com/deposit",
+      "dowmarkets": "https://test-myaccountnew.dowmarkets.com/deposit",
+      "lexatrade": "https://test-myaccountnew.lexatrade.com/deposit",
+      "investingvip": "https://test-myaccountnew.investingvip.com/deposit",
+      "powertrend": "https://test-myaccountnew.prtrend.org/deposit",
+      "widgets": "wss://informer.maximarkets.net/wss/Server.ashx?subscriber=true"
     },
-    "webSocketUrl": "https://wss.socialtrading.uat.pp.ua/"
+    "webSocketUrl": "https://wss.investarena.pp.ua/",
+    "": "https://wss.socialtrading.uat.pp.ua/",
+    "": "http://localhost:8082",
+    "repostUrl": "https://investarena.com/posts/",
+    "": "http://localhost:8088/",
+    "shareLinksUrl": {
+      "facebook": "http://www.facebook.com/sharer.php?u=http://localhost:3001/posts/",
+      "telegram": "https://t.me/share/url?url=http://localhost:3001/posts/",
+      "whatsapp": "https://wa.me/?text=http://localhost:3001/posts/"
+    },
+    "shareInvitationLinksUrl": {
+      "facebook": "http://www.facebook.com/sharer.php?u=",
+      "vkontakte": "http://vkontakte.ru/share.php?url=",
+      "google": "https://plus.google.com/share?url="
+    },
+    "logonWithToken": {
+      "maximarkets": "https://test-api.maximarkets.net/account/logonWithToken?token=",
+      "umarkets": "https://test-api.umarkets.info/account/logonWithToken?token=",
+      "limefx": "https://test-api.limefx.com/account/logonWithToken?token=",
+      "tradeallcrypto": "https://test-api.tradeallcrypto.com/account/logonWithToken?token=",
+      "goldflame": "https://test-api.goldflame.io/account/logonWithToken?token=",
+      "irotradex": "https://test-api.irotradex.com/account/logonWithToken?token=",
+      "maxitrade": "https://test-api.maxitrade.com/account/logonWithToken?token=",
+      "dowmarkets": "https://test-api.dowmarkets.com/account/logonWithToken?token=",
+      "lexatrade": "https://test-api.lexatrade.com/account/logonWithToken?token=",
+      "investingvip": "https://test-api.investingvip.com/account/logonWithToken?token=",
+      "powertrend": "https://test-api.prtrend.org/account/logonWithToken?token="
+    }
   },
   "test": {
     "apiPrefix": "http://localhost:3000/",
     "brokerWSUrl": {
-      "maximarkets": "https://trading.maximarkets.org/stomp/",
-      "umarkets": "https://trading.umarkets.com/stomp/",
-      "widgets": "wss://192.168.1.222/wss/Server.ashx?subscriber=true"
+      "proxyWsUrl": "wss://api.investarena.pp.ua/bots_service/ws",
+      "platformDomain": {
+        "maximarkets": "uat-trading.maximarkets.net",
+        "umarkets": "uat-trading.umarkets.info"
+      },
+      "widgets": "ws://192.168.1.222/wss/Server.ashx?subscriber=true"
     },
     "webSocketUrl": "http://localhost:8082",
     "shareLinksUrl": {
-      "facebook": "https://www.facebook.com/sharer.php?u=http://localhost:3001/posts/",
-      "vkontakte": "https://vkontakte.ru/share.php?url=http://localhost:3001/posts/",
-      "odnoklassniki": "https://connect.ok.ru/offer?url=http://localhost:3001/posts/",
-      "google": "https://plus.google.com/share?url=http://localhost:3001/posts/"
+      "facebook": "http://www.facebook.com/sharer.php?u=http://localhost:3001/posts/",
+      "telegram": "https://t.me/share/url?url=http://localhost:3001/posts/",
+      "whatsapp": "https://wa.me/?text=http://localhost:3001/posts/"
     },
     "platformDepositUrl": {
-      "umarkets": "https://my.umarkets.com/",
-      "maximarkets": "https://myaccount.maximarkets.org/"
-    }
+      "umarkets": "https://test-myaccountnew.umarkets.info/deposit",
+      "maximarkets": "https://test-myaccount.maximarkets.net/"
+    },
+    "repostUrl": "https://investarena.com/posts/"
   },
-
-  "versionApi": "investarena-api",
-
-  "authentication":{
+  "versionApi": "api/v3",
+  "authentication": {
     "authScope": "auth/",
     "signIn": "auth/sign_in/",
+    "signInWithBroker": "auth/broker_authorization/",
+    "signUpWithBroker": "auth/broker_registration/",
     "signOut": "auth/sign_out/",
+    "singleSignOn": "auth/single_sign_on",
     "validateToken": "auth/validate_token/",
     "registration": "auth/",
     "password": "auth/password",
     "keepAlive": "auth/keep_alive"
   },
-
-  "brokers":{
-    "brokerRegistration": "/broker/registration",
-    "brokerAuthorization": "/broker/authorization",
+  "invitation": "/send_email_invitation",
+  "brokers": {
+    "brokerRegistration": "/broker_registration/",
+    "brokerAuthorization": "/get_authorization_data/",
     "userBrokers": "/user_brokers/",
     "getBroker": "/get_broker/",
-    "reconnectBroker": "/broker/reconnect",
+    "reconnectBroker": "/reconnect_broker/",
     "forgotPassBroker": "/broker_forgot_password",
     "tradingPlatform": "/trading_platform"
   },
-
+  "posts": {
+    "posts": "/posts/",
+    "deleteRepost": "/delete_repost",
+    "getNextPosts": "/posts/get_posts/",
+    "decline": "/decline_collaborator",
+    "complain": "/complaint",
+    "searchHashtags": "/search_hashtags",
+    "vote": "/vote",
+    "getConstructor": "/post_constructor",
+    "templates": "/constructor_templates"
+  },
+  "bookmark": {
+    "bookmarks": "/bookmarks"
+  },
+  "blackList": "/blacklist/",
   "trends": {
     "getTrends": "/find_most_used_hashtags/",
     "getInstrumentsTrends": "/instruments/trends"
   },
-
   "transactions": {
+    "getTopUsers": "/top_users/",
     "getTransactionByPeriod": "/referral_payments/"
   },
-
+  "comments": {
+    "commentsScope": "/comments/",
+    "comments": "/comments/"
+  },
   "deals": {
     "deals": "/deals/",
     "lastClosedDeals": "/get_last_closed_deal/",
     "createOpenDeals": "/create_open_deals/",
-    "createClosedDeals": "/create_closed_deals/"
+    "createClosedDeals": "/create_closed_deals/",
+    "allowedDeals": "/allowed_deals"
   },
-
-  "performers": {
-    "searchInstrumentsStatistic": "/search-instruments-stats",
-    "top": "/top-performers",
-    "instrumentStatistic": "/instrument-statistics",
-    "userStatistics": "/user-statistics",
-    "instrumentPerformers": "/instrument-performers"
-  },
-  "forecasts": {
-    "activeForecasts": "/active_forecasts"
-  },
-
-  "investArenaApi": "https://investarena.waiviodev.com",
-
-  "quickForecasts": {
-    "quickForecast": "/quick-forecasts",
-    "quickForecastFind": "/quick-forecasts/find",
-    "quickForecastWinners": "/quick-forecasts/winners",
-    "quickForecastRewards": "/quick-forecasts/rewards"
-  },
-
   "favorites": {
     "favorites": "/favorites/"
   },
-
-  "logonWithToken": {
-    "maximarkets": "https://publicapi.maximarkets.org/account/logonWithToken?token=",
-    "umarkets": "https://api.umarkets.com/account/logonWithToken?token=",
-    "maxitrade": "https://api.maxitrade.com/account/logonWithToken?token=",
-    "tradeallcrypto": "https://api.tradeallcrypto.com/account/logonWithToken?token=",
-    "tradiva": "https://api.tradiva.com/account/logonWithToken?token=",
-    "770capital": "https://api.770capital.com/account/logonWithToken?token=",
-    "dowmarkets": "https://api.dowmarkets.com/account/logonWithToken?token=",
-    "limefx": "https://api.limefx.com/account/logonWithToken?token="
+  "companies": {
+    "companies": "/companies",
+    "searchCompanies": "/search_companies"
+  },
+  "groups": {
+    "groups": "/groups",
+    "searchGroups": "/search_groups"
+  },
+  "jobs": {
+    "jobs": "/jobs/",
+    "searchJobs": "/search_jobs"
+  },
+  "group": {
+    "groups": "/groups/",
+    "getUsers": "/get_users",
+    "updateImage": "/update_image",
+    "changeUserRole": "/change_user_role/",
+    "addUser": "/add_user/",
+    "deleteUser": "/delete_user/",
+    "requestMembership": "/request_membership",
+    "confirmMembership": "/confirm_membership/",
+    "declineMembership": "/decline_membership/",
+    "changeMemberPermissions": "/change_user_access/",
+    "pinPost": "/pin_post/",
+    "unpinPost": "/unpin_post/"
+  },
+  "company": {
+    "companies": "/companies/",
+    "manageCompanyGroup": "/manage_group/",
+    "getUsers": "/get_users",
+    "updateImage": "/update_image",
+    "changeUserRole": "/change_user_role/",
+    "addUser": "/add_user/",
+    "deleteUser": "/delete_user/",
+    "requestMembership": "/request_membership",
+    "confirmMembership": "/confirm_membership/",
+    "declineMembership": "/decline_membership/",
+    "changeMemberPermissions": "/change_user_access/"
+  },
+  "locales": {
+    "updateLocale": "/update_language/"
+  },
+  "agreements": {
+    "umarkets": "https://www.umarkets.info/legal-documentation/terms-and-conditions/",
+    "maximarkets": "https://www.maximarkets.net/terms-and-conditions/"
+  },
+  "likes": {
+    "updateLike": "/like/",
+    "getLikesNames": "/get_likes_names/"
+  },
+  "forecastPosts": {
+    "getForecastPosts": "/forecast_posts/"
+  },
+  "notices": {
+    "getNotice": "/get_notifications/",
+    "checkNotice": "/set_checked/",
+    "deleteNotice": "/delete_notification/",
+    "acceptCollaborator": "/invitations/accept_collaboration/",
+    "declineCollaboration": "/invitations/decline_collaboration/",
+    "acceptGroupInvitation": "/invitations/accept_group_invitation/",
+    "declineGroupInvitation": "/invitations/decline_group_invitation/",
+    "acceptCompanyInvitation": "/invitations/accept_company_invitation/",
+    "declineCompanyInvitation": "/invitations/decline_company_invitation/",
+    "getMembershipRequestsCount": "/membership_requests_count/"
+  },
+  "links": {
+    "parseLink": "/parse_url/"
+  },
+  "logs": {
+    "sendError": "/logs"
+  },
+  "followers": {
+    "getFollowers": "/followers/",
+    "getFollowings": "/followings/",
+    "follow": "/follow/",
+    "unFollow": "/unfollow/"
+  },
+  "portfolio": {
+    "updateInstrument": "/portfolio_instruments/"
+  },
+  "recommend": {
+    "recommend": "/user_recommendations/",
+    "getRecommendations": "/user_recommendations?user_id="
+  },
+  "sorts": {
+    "changeSort": "/change_sort/",
+    "changeSettingFeed": "/change_setting_feed/"
+  },
+  "users": {
+    "getUserInfo": "/get_user_info/",
+    "updateUserInfo": "/update_personal_info/",
+    "updateUserPrivacy": "/update_privacy/",
+    "updateFieldsConfidentiality": "/update_confidentiality/",
+    "updateUserAvatar": "/update_image/",
+    "updatePassword": "/update_password/",
+    "updateUserNickname": "/update_nickname/",
+    "updatePersonalFilters": "/update_personal_filters/",
+    "searchUsers": "/search_users",
+    "searchAll": "/search_all",
+    "searchHistory": "/search_history",
+    "getTopInstrumentUsers": "/instruments/top_users",
+    "confirmUsingCookies": "/confirm_cookies_policy",
+    "salesSupport": "/sales_support"
+  },
+  "countries": {
+    "getCountryCode": "https://api.maximarkets.net/dictionary/countryiso"
+  },
+  "feedback": {
+    "sendFeedback": "/feedback/"
+  },
+  "websockets": {
   },
   "signals": {
-    "getSignals": "https://informer.maximarkets.org/wss/signals"
+    "getSignals": "https://informer.maximarkets.net/wss/signals"
   },
-
+  "news": {
+    "getLastNews": "https://news.umarkets.ai/feed/filter/full"
+  },
   "charts": {
-    "getChartsData": "https://informer.maximarkets.org/wss/quotation/getstatisticshistory"
+    "getChartsData": "https://informer.maximarkets.net/wss/quotation/getstatisticshistory"
   },
-  "statistics": {
-    "getUserStatistics": "/user-summary-statistics/",
-    "getUserInstrumentStatistics": "/user-instrument-statistics/"
+  "competitions": {
+    "competitions": "/competitions",
+    "competition": "/competition",
+    "searchCompetitions": "/search_competitions",
+    "inviteUser": "/invite_user"
   },
-  "posts": {
-    "withForecastByUser": "/posts/with-forecast-by-user",
-    "withForecastBywobject": "/posts/with-forecast-by-wobject"
+  "courses": {
+    "courses": "/courses",
+    "requestMembership": "/join_course_request",
+    "confirmMembership": "/confirm_course_request/",
+    "declineMembership": "/decline_course_request/",
+    "changeRole": "/change_role/",
+    "deleteUser": "/delete_user/",
+    "addUser": "/add_user/",
+    "joinCourse": "/join_course",
+    "leaveCourse": "/leave_course",
+    "updateImage": "/update_image",
+    "addFiles": "/add_files",
+    "deleteFile": "/delete_file",
+    "lessons": "/lessons"
+  },
+  "promo": {
+    "getPromo": "/get_promo"
+  },
+  "transparentDeals": {
+    "transparentCabinets": "/transparent_cabinets",
+    "allowViewBroker": "/allow_view_broker",
+    "denyViewBroker": "/deny_view_broker",
+    "transparentBrokers": "/transparent_brokers",
+    "updateTransparentBroker": "/update_transparent_broker"
+  },
+  "topExperts": "/top_experts",
+  "platformService": {
+    "prefix": "platform_service",
+    "statistics": {
+      "getStatistics": "/statistics",
+      "getSettings": "/statistics/settings",
+      "setFillMode": "/statistics/only_fake",
+      "generateDealsForPeriod": "/statistics/generate_deals",
+      "setAutofillSettings": "/statistics/autofill_settings"
+    }
+  },
+  "botsService": {
+    "prefix": "bots_service",
+    "mt4Deals": "/mt4_deals"
   }
 }

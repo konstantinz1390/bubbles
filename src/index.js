@@ -4,10 +4,12 @@ import './index.css';
 import App from './App';
 import { store } from './app/store';
 import { Provider } from 'react-redux';
+import { connectPlatform } from './investarena/redux/actions/platformActions';
 import * as serviceWorker from './serviceWorker';
 import { singleton } from './investarena/platform/singletonPlatform';
 
 singleton.initialize(store);
+store.dispatch(connectPlatform());
 
 ReactDOM.render(
   <React.StrictMode>

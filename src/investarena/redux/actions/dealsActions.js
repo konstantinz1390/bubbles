@@ -11,6 +11,7 @@ export const GET_POST_DEALS_SUCCESS = 'GET_POST_DEALS_SUCCESS';
 export const CREATE_POST_OPEN_DEAL_SUCCESS = 'CREATE_POST_OPEN_DEAL_SUCCESS';
 export const CHANGE_OPEN_DEAL_SUCCESS = 'CHANGE_OPEN_DEAL_SUCCESS';
 export const CLOSE_OPEN_DEAL_SUCCESS = 'CLOSE_OPEN_DEAL_SUCCESS';
+export const SET_LIMIT_ORDERS = 'SET_LIMIT_ORDERS';
 
 export function createOpenDealPlatform(
   quote,
@@ -214,4 +215,8 @@ export function changeOpenDealPlatformSuccess(data) {
 
 export function closeOpenDealPlatformSuccess(data) {
   return { type: CLOSE_OPEN_DEAL_SUCCESS, payload: data };
+}
+
+export function setLimitOrders (data) {
+  return { type: SET_LIMIT_ORDERS, payload: data };
 }

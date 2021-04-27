@@ -8,13 +8,15 @@ export function setItemTabs(tab) {
   localStorage.setItem('tabs', JSON.stringify(localStorageTabsAfter));
 }
 export function getItemTabs(nameTab) {
-  return localStorage.getItem('tabs') && JSON.parse(localStorage.getItem('tabs'))[nameTab]
-    ? +JSON.parse(localStorage.getItem('tabs'))[nameTab]
+  return (localStorage.getItem('tabs') && JSON.parse(localStorage.getItem('tabs'))[nameTab])
+    ? JSON.parse(localStorage.getItem('tabs'))[nameTab]
     : null;
 }
 
 export function setOptionalBlockState(item, isOpen) {
-  localStorage.setItem(item, JSON.stringify(isOpen));
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(item, JSON.stringify(isOpen));
+  }
 }
 export function getOptionalBlockState(item) {
   const isOpen = localStorage.getItem(item);
@@ -48,4 +50,34 @@ export function setViewMode(targetName, viewModeValue) {
 export function getViewMode(targetName) {
   const viewMode = localStorage.getItem('viewMode');
   return viewMode ? JSON.parse(viewMode)[targetName] : null;
+}
+
+const brokerDataKeys = ['sid', 'stompUser', 'stompPassword', 'um_session', 'broker_id', 'WEBSRV', 'token', 'accounts', 'email', 'platformName'];
+export function setBrokersData(data = {}) {
+  brokerDataKeys.forEach(localStorageKey => {
+    const value = data[localStorageKey];
+    if (value) {
+      if (typeof value === 'object') {
+        localStorage.setItem(localStorageKey, JSON.stringify(data[localStorageKey]));
+      } else {
+        localStorage.setItem(localStorageKey, data[localStorageKey]);
+      }
+    }
+  });
+}
+
+export function clearBrokersData() {
+  brokerDataKeys.forEach((key) => {
+    localStorage.removeItem(key);
+  });
+}
+
+export function getBrokersData() {
+  const stompUser = localStorage.getItem('stompUser');
+  const stompPassword = localStorage.getItem('stompPassword');
+  const sid = localStorage.getItem('sid');
+  const umSession = localStorage.getItem('um_session');
+  const webSrv = localStorage.getItem('WEBSRV');
+
+  return { stompUser, stompPassword, sid, umSession, webSrv };
 }

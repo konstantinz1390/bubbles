@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import { numberFormat } from './numberFormat';
 import { singleton } from './singletonPlatform';
-import { getClientWObj } from '../../client/adapters';
-import { CHART_ID } from '../constants/objectsInvestarena';
+// import { getClientWObj } from '../../client/adapters';
+// import { CHART_ID } from '../constants/objectsInvestarena';
 
 export class PlatformHelper {
   static getMargin(quote, quoteSettings, amount) {
@@ -268,6 +268,7 @@ export class PlatformHelper {
     const rangesPrice = {};
     let takeProfitMin = 0;
     let takeProfitMax = 0;
+    // eslint-disable-next-line default-case
     switch (dealParams.direction) {
       case 'SHORT':
         takeProfitMin = (dealParams.price * (100 - maxPercent / 1000000)) / 100 + flFix;
@@ -291,6 +292,7 @@ export class PlatformHelper {
     const rangesPrice = {};
     let stopLossMin = 0;
     let stopLossMax = 0;
+    // eslint-disable-next-line default-case
     switch (dealParams.direction) {
       case 'SHORT':
         stopLossMin = (dealParams.price * (100 + minPercent / 1000000)) / 100 + flFix;
@@ -319,6 +321,7 @@ export class PlatformHelper {
       tempDealForMin[key] = deal[key];
       tempDealForMax[key] = deal[key];
     });
+    // eslint-disable-next-line default-case
     switch (dealParams.direction) {
       case 'SHORT':
         stopLossMin = (dealParams.price * (100 + minPercent / 1000000)) / 100;
@@ -361,6 +364,7 @@ export class PlatformHelper {
       tempDealForMin[key] = deal[key];
       tempDealForMax[key] = deal[key];
     });
+    // eslint-disable-next-line default-case
     switch (dealParams.direction) {
       case 'SHORT':
         takeProfitMin = (dealParams.price * (100 - minPercent / 1000000)) / 100;
@@ -490,21 +494,21 @@ export class PlatformHelper {
   }
 }
 
-export const mutateObject = wobjects =>
-  wobjects
-    .map(wobj => getClientWObj(wobj))
-    .filter(wobj => Boolean(wobj[CHART_ID]))
-    .map(wobj => ({
-      avatarlink: wobj.avatar,
-      chartId: wobj[CHART_ID],
-      author_permlink: wobj.id,
-    }));
-
-export const getOS = () => {
-  let OSName = 'Unknown OS';
-  if (navigator.appVersion.indexOf('Win') !== -1) OSName = 'Windows';
-  if (navigator.appVersion.indexOf('Mac') !== -1) OSName = 'MacOS';
-  if (navigator.appVersion.indexOf('X11') !== -1) OSName = 'UNIX';
-  if (navigator.appVersion.indexOf('Linux') !== -1) OSName = 'Linux';
-  return OSName;
-};
+// export const mutateObject = wobjects =>
+//   wobjects
+//     .map(wobj => getClientWObj(wobj))
+//     .filter(wobj => Boolean(wobj[CHART_ID]))
+//     .map(wobj => ({
+//       avatarlink: wobj.avatar,
+//       chartId: wobj[CHART_ID],
+//       author_permlink: wobj.id,
+//     }));
+//
+// export const getOS = () => {
+//   let OSName = 'Unknown OS';
+//   if (navigator.appVersion.indexOf('Win') !== -1) OSName = 'Windows';
+//   if (navigator.appVersion.indexOf('Mac') !== -1) OSName = 'MacOS';
+//   if (navigator.appVersion.indexOf('X11') !== -1) OSName = 'UNIX';
+//   if (navigator.appVersion.indexOf('Linux') !== -1) OSName = 'Linux';
+//   return OSName;
+// };

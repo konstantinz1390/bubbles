@@ -1,15 +1,15 @@
-import _ from 'lodash';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { injectIntl } from 'react-intl';
 import { Button, Checkbox, Form, Input, Radio, Select } from 'antd';
-import { optionsPlatform } from '../../../constants/selectData';
-import { country } from '../../../constants/countryData';
-import { phoneCode } from '../../../constants/phoneCodeData';
+import _ from 'lodash';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { agreements } from '../../../configApi/licenseAgreements';
-import ObjectCardView from '../../../../client/objectCard/ObjectCardView';
-import { getClientWObj } from '../../../../client/adapters';
-import { getObjectsByIds } from '../../../../waivioApi/ApiClient';
+import { country } from '../../../constants/countryData';
+// import { phoneCode } from '../../../constants/phoneCodeData';
+import { optionsPlatform } from '../../../constants/selectData';
+// import ObjectCardView from '../../../../client/objectCard/ObjectCardView';
+// import { getClientWObj } from '../../../../client/adapters';
+// import { getObjectsByIds } from '../../../../waivioApi/ApiClient';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -33,15 +33,15 @@ class BrokerRegistration extends Component {
     stepNumber: 1,
   };
 
-  componentDidMount = async () => {
-    const permlinksArray = [];
-    optionsPlatform.forEach(platform => {
-      permlinksArray.push(platform.permlink);
-    });
-    const wobjectsArray = await getObjectsByIds({ authorPermlinks: permlinksArray });
-    // eslint-disable-next-line react/no-did-mount-set-state
-    this.setState({ platformsWobjects: wobjectsArray.wobjects });
-  };
+  // componentDidMount = async () => {
+  // const permlinksArray = [];
+  // optionsPlatform.forEach(platform => {
+  //   permlinksArray.push(platform.permlink);
+  // });
+  // const wobjectsArray = await getObjectsByIds({ authorPermlinks: permlinksArray });
+  // eslint-disable-next-line react/no-did-mount-set-state
+  // this.setState({ platformsWobjects: wobjectsArray.wobjects });
+  // };
 
   handleReadChange = () => {
     this.setState({ isAgreementRead: !this.state.isAgreementRead });
@@ -95,9 +95,8 @@ class BrokerRegistration extends Component {
     },
   };
 
-  getFieldDecorator = this.props.form.getFieldDecorator;
-
-  prefixSelector = () => {};
+  prefixSelector = () => {
+  };
 
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;
@@ -128,29 +127,27 @@ class BrokerRegistration extends Component {
         id: 'broker_modal_enter_country',
         defaultMessage: 'Country',
       })}
+      name={'country'}
+      initialValue={''}
     >
-      {this.getFieldDecorator('country', {
-        initialValue: '',
-      })(
-        <Select
-          showSearch
-          style={{ width: '100%' }}
-          placeholder={this.props.intl.formatMessage({
-            id: 'tooltip.empty',
-            defaultMessage: 'Please fill in this field',
-          })}
-          onChange={this.handleCountryValueChange}
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {_.map(country[this.props.intl.locale], (option, key) => (
-            <Option key={key} value={key}>
-              {option}
-            </Option>
-          ))}
-        </Select>,
-      )}
+      <Select
+        showSearch
+        style={{ width: '100%' }}
+        placeholder={this.props.intl.formatMessage({
+          id: 'tooltip.empty',
+          defaultMessage: 'Please fill in this field',
+        })}
+        onChange={this.handleCountryValueChange}
+        filterOption={(input, option) =>
+          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+        }
+      >
+        {_.map(country[this.props.intl.locale], (option, key) => (
+          <Option key={key} value={key}>
+            {option}
+          </Option>
+        ))}
+      </Select>
     </FormItem>
   );
 
@@ -162,47 +159,45 @@ class BrokerRegistration extends Component {
         defaultMessage: 'Platform',
       })}
     >
-      {this.getFieldDecorator('platform')(
-        this.isExcludedCountry() ? (
-          <div>No service provider available in your country</div>
-        ) : (
-          <Radio.Group
-            style={{ width: '100%' }}
-            placeholder={this.props.intl.formatMessage({
-              id: 'tooltip.empty',
-              defaultMessage: 'Please fill in this field',
-            })}
-            onChange={this.changePlatform}
-            className="BrokerRegistration__radiogroup"
-          >
-            {/* eslint-disable-next-line consistent-return */}
-            {_.map(optionsPlatform, option => {
-              if (!option.excludedCountries.includes(this.state.currentCountryValue)) {
-                const platformWobject = this.state.platformsWobjects.find(
-                  item => item.author_permlink === option.permlink,
-                );
-                const platformClientWobject = getClientWObj(platformWobject);
-                return (
-                  <Radio
-                    key={option.value}
-                    value={option.value}
-                    className="BrokerRegistration__checkbox"
-                  >
-                    <a
-                      href={`https://www.waivio.com/object/${option.permlink}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+        {this.isExcludedCountry() ? (
+            <div>No service provider available in your country</div>
+          ) : (
+            <Radio.Group
+              style={{ width: '100%' }}
+              placeholder={this.props.intl.formatMessage({
+                id: 'tooltip.empty',
+                defaultMessage: 'Please fill in this field',
+              })}
+              onChange={this.changePlatform}
+              className="BrokerRegistration__radiogroup"
+            >
+              {/* eslint-disable-next-line consistent-return */}
+              {_.map(optionsPlatform, option => {
+                if (!option.excludedCountries.includes(this.state.currentCountryValue)) {
+                  // const platformWobject = this.state.platformsWobjects.find(
+                  //   item => item.author_permlink === option.permlink,
+                  // );
+                  // const platformClientWobject = getClientWObj(platformWobject);
+                  return (
+                    <Radio
+                      key={option.value}
+                      value={option.value}
+                      className="BrokerRegistration__checkbox"
                     >
-                      <span>Languages: {option.languages.join(', ')}</span>
-                    </a>
-                    <ObjectCardView wObject={platformClientWobject} showSmallVersion />
-                  </Radio>
-                );
-              }
-            })}
-          </Radio.Group>
-        ),
-      )}
+                      <a
+                        href={`https://www.waivio.com/object/${option.permlink}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span>Languages: {option.languages.join(', ')}</span>
+                      </a>
+                      {/*<ObjectCardView wObject={platformClientWobject} showSmallVersion />*/}
+                    </Radio>
+                  );
+                }
+              })}
+            </Radio.Group>
+          )}
     </FormItem>
   );
 
@@ -214,19 +209,19 @@ class BrokerRegistration extends Component {
           id: 'broker_modal_enter_first_name',
           defaultMessage: 'First name',
         })}
+        name={'firstName'}
+        rules={[
+          {
+            required: true,
+            message: this.props.intl.formatMessage({
+              id: 'broker_modal_valid_first_name',
+              defaultMessage: 'Please input your first name!',
+            }),
+            whitespace: true,
+          },
+        ]}
       >
-        {this.getFieldDecorator('firstName', {
-          rules: [
-            {
-              required: true,
-              message: this.props.intl.formatMessage({
-                id: 'broker_modal_valid_first_name',
-                defaultMessage: 'Please input your first name!',
-              }),
-              whitespace: true,
-            },
-          ],
-        })(<Input />)}
+        <Input/>
       </FormItem>
       <FormItem
         {...this.formItemLayout}
@@ -234,19 +229,19 @@ class BrokerRegistration extends Component {
           id: 'broker_modal_enter_last_name',
           defaultMessage: 'Last name',
         })}
+        name={'lastName'}
+        rules={[
+          {
+            required: true,
+            message: this.props.intl.formatMessage({
+              id: 'broker_modal_valid_last_name',
+              defaultMessage: 'Please input your last name!',
+            }),
+            whitespace: true,
+          },
+        ]}
       >
-        {this.getFieldDecorator('lastName', {
-          rules: [
-            {
-              required: true,
-              message: this.props.intl.formatMessage({
-                id: 'broker_modal_valid_last_name',
-                defaultMessage: 'Please input your last name!',
-              }),
-              whitespace: true,
-            },
-          ],
-        })(<Input />)}
+        <Input/>
       </FormItem>
       <FormItem
         {...this.formItemLayout}
@@ -254,25 +249,25 @@ class BrokerRegistration extends Component {
           id: 'broker_modal_enter_e-mail',
           defaultMessage: 'E-mail',
         })}
+        name={'email'}
+        rules={[
+          {
+            type: 'email',
+            message: this.props.intl.formatMessage({
+              id: 'tooltip.emailValid',
+              defaultMessage: 'Please enter a valid email',
+            }),
+          },
+          {
+            required: true,
+            message: this.props.intl.formatMessage({
+              id: 'tooltip.empty',
+              defaultMessage: 'Please fill in this field',
+            }),
+          },
+        ]}
       >
-        {this.getFieldDecorator('email', {
-          rules: [
-            {
-              type: 'email',
-              message: this.props.intl.formatMessage({
-                id: 'tooltip.emailValid',
-                defaultMessage: 'Please enter a valid email',
-              }),
-            },
-            {
-              required: true,
-              message: this.props.intl.formatMessage({
-                id: 'tooltip.empty',
-                defaultMessage: 'Please fill in this field',
-              }),
-            },
-          ],
-        })(<Input />)}
+        <Input/>
       </FormItem>
       <FormItem
         {...this.formItemLayout}
@@ -280,28 +275,28 @@ class BrokerRegistration extends Component {
           id: 'broker_modal_enter_passowrd',
           defaultMessage: 'Password',
         })}
+        name={'password'}
+        rules={[
+          {
+            required: true,
+            message: this.props.intl.formatMessage({
+              id: 'broker_modal_enter_password',
+              defaultMessage: 'Please input your Password!',
+            }),
+          },
+          {
+            validator: this.validateToNextPassword,
+          },
+          {
+            min: 5,
+            message: this.props.intl.formatMessage({
+              id: 'broker_modal_valid_password',
+              defaultMessage: 'Require more then 5 symbols',
+            }),
+          },
+        ]}
       >
-        {this.getFieldDecorator('password', {
-          rules: [
-            {
-              required: true,
-              message: this.props.intl.formatMessage({
-                id: 'broker_modal_enter_password',
-                defaultMessage: 'Please input your Password!',
-              }),
-            },
-            {
-              validator: this.validateToNextPassword,
-            },
-            {
-              min: 5,
-              message: this.props.intl.formatMessage({
-                id: 'broker_modal_valid_password',
-                defaultMessage: 'Require more then 5 symbols',
-              }),
-            },
-          ],
-        })(<Input type="password" />)}
+        <Input type="password"/>
       </FormItem>
       <FormItem
         {...this.formItemLayout}
@@ -309,54 +304,50 @@ class BrokerRegistration extends Component {
           id: 'broker_modal_enter_confirmation',
           defaultMessage: 'Confirmation',
         })}
+        name={'confirm'}
+        rules={[
+          {
+            required: true,
+            message: this.props.intl.formatMessage({
+              id: 'broker_modal_confirm_password',
+              defaultMessage: 'Please confirm your password!',
+            }),
+            validator: this.compareToFirstPassword
+          },
+        ]}
       >
-        {this.getFieldDecorator('confirm', {
-          rules: [
-            {
-              required: true,
-              message: this.props.intl.formatMessage({
-                id: 'broker_modal_confirm_password',
-                defaultMessage: 'Please confirm your password!',
-              }),
-            },
-            { validator: this.compareToFirstPassword },
-          ],
-        })(<Input type="password" onBlur={this.handleConfirmBlur} />)}
+        <Input type="password" onBlur={this.handleConfirmBlur}/>
       </FormItem>
-
       <FormItem
         {...this.formItemLayout}
         label={this.props.intl.formatMessage({
           id: 'broker_modal_enter_phone_number',
           defaultMessage: 'Phone Number',
         })}
+        name={'phone'}
+        rules={[
+          {
+            required: true,
+            message: this.props.intl.formatMessage({
+              id: 'broker_modal_valid_phone_number',
+              defaultMessage: 'Please input your phone number!',
+            }),
+          },
+          {
+            min: 8,
+            message: this.props.intl.formatMessage({
+              id: 'broker_modal_valid_numbers_phone_number',
+              defaultMessage: 'Require more then 8 numbers',
+            }),
+          },
+        ]}
       >
-        {this.getFieldDecorator('phone', {
-          rules: [
-            {
-              required: true,
-              message: this.props.intl.formatMessage({
-                id: 'broker_modal_valid_phone_number',
-                defaultMessage: 'Please input your phone number!',
-              }),
-            },
-            {
-              min: 8,
-              message: this.props.intl.formatMessage({
-                id: 'broker_modal_valid_numbers_phone_number',
-                defaultMessage: 'Require more then 8 numbers',
-              }),
-            },
-            // { type: 'number', message: 'Only numbers' }
-          ],
-        })(
           <Input
-            addonBefore={this.getFieldDecorator('phoneCountry', {
-              initialValue: phoneCode[this.state.currentCountryValue],
-            })(<Select showArrow={false} style={{ width: 70 }} disabled />)}
+            // addonBefore={this.getFieldDecorator('phoneCountry', {
+            //   initialValue: phoneCode[this.state.currentCountryValue],
+            // })(<Select showArrow={false} style={{ width: 70 }} disabled/>)}
             style={{ width: '100%' }}
-          />,
-        )}
+          />
       </FormItem>
       <FormItem {...this.tailFormItemLayout}>
         <Checkbox className="d-flex align-items-center" onClick={this.handleReadChange}>
@@ -440,4 +431,4 @@ class BrokerRegistration extends Component {
 
 BrokerRegistration.propTypes = propTypes;
 
-export default injectIntl(Form.create()(BrokerRegistration));
+export default injectIntl(BrokerRegistration);

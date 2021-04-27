@@ -1,9 +1,9 @@
-import Cookies from 'js-cookie';
 import { message } from 'antd';
+import Cookies from 'js-cookie';
 import api from '../../configApi/apiResources';
-import { authorizeToken, connectPlatform } from './platformActions';
 import { singleton } from '../../platform/singletonPlatform';
 import { toggleModal } from './modalsActions';
+import { authorizeToken, connectPlatform } from './platformActions';
 
 export const AUTHORIZE_BROKER_REQUEST = 'AUTHORIZE_BROKER_REQUEST';
 export const AUTHORIZE_BROKER_SUCCESS = 'AUTHORIZE_BROKER_SUCCESS';
@@ -136,24 +136,44 @@ export function disconnectBroker(isReconnect = false) {
   };
 }
 export function reconnectBroker(data) {
+  // return (dispatch, getState) => {
+  //   return api.brokers.reconnectBroker(data, locales[getLanguageState(getState())])
+  //     .then(({ status, message, result, error }) => {
+  //       if (!error && status && message) {
+  //         if (result) {
+  //           dispatch(connectPlatform());
+  //         } else {
+  //           dispatch(showNotification({ status: 'error', message }));
+  //           dispatch(disconnectBroker());
+  //         }
+  //       } else {
+  //         dispatch(showNotification({
+  //           status: 'error',
+  //           message: (error || locales[getLanguageState(getState())].messages['brokerAction.defaultPlatformError']).toString(),
+  //         }));
+  //       }
+  //     });
+  // };
   return dispatch =>
-    api.brokers.reconnectBroker(data).then(({ status, resMessage, result, error }) => {
-      if (!error && status && resMessage) {
-        if (result) {
-          dispatch(connectPlatform());
+    api.brokers.reconnectBroker(data) // TODO: locales!!!
+      .then(({ status, resMessage, result, error }) => {
+        if (!error && status && resMessage) {
+          if (result) {
+            dispatch(connectPlatform());
+          } else {
+            message.error(resMessage);
+            dispatch(disconnectBroker(true));
+          }
         } else {
-          message.error(resMessage);
-          dispatch(disconnectBroker(true));
+          message.error(error.toString());
         }
-      } else {
-        message.error(error.toString());
-      }
-    });
+      });
 }
 export function forgotPassBroker(data) {
   return dispatch => {
     dispatch(forgotBrokerPassRequest());
     return api.brokers.forgotPassBroker(data, 'en').then(({ status, error }) => {
+      // eslint-disable-next-line no-undef
       if (!error && status && messageresp) {
         if (status === 'success') {
           dispatch(forgotBrokerPassSuccess());

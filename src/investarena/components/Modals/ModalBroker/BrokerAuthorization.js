@@ -1,8 +1,8 @@
+import { Button, Checkbox, Form, Input, Select } from 'antd';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { injectIntl } from 'react-intl';
-import { Select, Button, Form, Input, Checkbox, Icon } from 'antd';
 import { optionsPlatform } from '../../../constants/selectData';
 
 const propTypes = {
@@ -24,14 +24,9 @@ class BrokerAuthorization extends Component {
   state = {
     checked: localStorage.getItem('isOneClickTrade') === 'true' || false,
   };
-  connectBroker = event => {
-    event.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        this.props.changeEmail(values.email);
-        this.props.authorizeBroker(values);
-      }
-    });
+  connectBroker = values => {
+    // this.props.changeEmail(values.email);
+    this.props.authorizeBroker(values);
   };
   disconnectBroker = event => {
     event.preventDefault();
@@ -42,10 +37,10 @@ class BrokerAuthorization extends Component {
     this.setState({ checked: e.target.checked });
   };
   render() {
-    const { getFieldDecorator } = this.props.form;
+    // const { getFieldDecorator } = this.props.form;
     return (
       <Form
-        onSubmit={this.props.brokerConnected ? this.disconnectBroker : this.connectBroker}
+        onFinish={this.props.brokerConnected ? this.disconnectBroker : this.connectBroker}
         className="login-form"
       >
         <div className="d-flex justify-content-center st-margin-bottom-middle">
@@ -56,11 +51,10 @@ class BrokerAuthorization extends Component {
             })}
           </div>
         </div>
-        {getFieldDecorator('platform', {
-          initialValue: this.props.brokerConnected
-            ? this.props.platformName
-            : null || optionsPlatform[0].value,
-        })(
+        <FormItem name="broker_name" initialValue={this.props.brokerConnected
+          ? this.props.platformName
+          : optionsPlatform[0].value}
+        >
           <Select
             style={{ width: '100%' }}
             placeholder={this.props.intl.formatMessage({
@@ -74,34 +68,30 @@ class BrokerAuthorization extends Component {
                 {option.label}
               </Option>
             ))}
-          </Select>,
-        )}
+          </Select>
+        </FormItem>
         {!this.props.brokerConnected ? (
-          <FormItem>
-            {getFieldDecorator('email', {
-              rules: [
-                {
-                  type: 'email',
-                  message: this.props.intl.formatMessage({
-                    id: 'tooltip.emailValid',
-                    defaultMessage: 'Please enter a valid email',
-                  }),
-                },
-                {
-                  required: true,
-                  message: this.props.intl.formatMessage({
-                    id: 'tooltip.empty',
-                    defaultMessage: 'Please fill in this field',
-                  }),
-                },
-              ],
-            })(
-              <Input
-                prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                placeholder="E-mail"
-                disabled={this.props.brokerConnected}
-              />,
-            )}
+          <FormItem name={'email'} rules={[
+            {
+              type: 'email',
+              message: this.props.intl.formatMessage({
+                id: 'tooltip.emailValid',
+                defaultMessage: 'Please enter a valid email',
+              }),
+            },
+            {
+              required: true,
+              message: this.props.intl.formatMessage({
+                id: 'tooltip.empty',
+                defaultMessage: 'Please fill in this field',
+              }),
+            },
+          ]}>
+            <Input
+              // prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              placeholder="E-mail"
+              disabled={this.props.brokerConnected}
+            />
           </FormItem>
         ) : (
           <div className="d-flex flex-column align-items-center st-margin-bottom-middle">
@@ -109,32 +99,28 @@ class BrokerAuthorization extends Component {
           </div>
         )}
         {!this.props.brokerConnected && (
-          <FormItem>
-            {getFieldDecorator('password', {
-              rules: [
-                {
-                  required: true,
-                  message: this.props.intl.formatMessage({
-                    id: 'broker_modal_enter_password',
-                    defaultMessage: 'Please input your Password!',
-                  }),
-                },
-                {
-                  min: 5,
-                  message: this.props.intl.formatMessage({
-                    id: 'broker_modal_valid_password',
-                    defaultMessage: 'Require more then 5 symbols',
-                  }),
-                },
-              ],
-            })(
-              <Input
-                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                type="password"
-                placeholder="Password"
-                disabled={this.props.brokerConnected}
-              />,
-            )}
+          <FormItem name={'password'} rules={[
+            {
+              required: true,
+              message: this.props.intl.formatMessage({
+                id: 'broker_modal_enter_password',
+                defaultMessage: 'Please input your Password!',
+              }),
+            },
+            {
+              min: 5,
+              message: this.props.intl.formatMessage({
+                id: 'broker_modal_valid_password',
+                defaultMessage: 'Require more then 5 symbols',
+              }),
+            },
+          ]}>
+            <Input.Password
+              // prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              // type="password"
+              placeholder="Password"
+              disabled={this.props.brokerConnected}
+            />
           </FormItem>
         )}
         <div className="d-flex justify-content-between">
@@ -149,7 +135,7 @@ class BrokerAuthorization extends Component {
           {/* ) : ( */}
           {/* <span /> */}
           {/* )} */}
-          <span />
+          <span/>
           <Checkbox onChange={this.handleOneClickTrading} checked={this.state.checked}>
             {this.props.intl.formatMessage({
               id: 'modalBroker.oneClickTrade',
@@ -186,13 +172,13 @@ class BrokerAuthorization extends Component {
           >
             {!this.props.brokerConnected
               ? this.props.intl.formatMessage({
-                  id: 'modalBroker.connect',
-                  defaultMessage: 'CONNECT',
-                })
+                id: 'modalBroker.connect',
+                defaultMessage: 'CONNECT',
+              })
               : this.props.intl.formatMessage({
-                  id: 'modalBroker.disconnect',
-                  defaultMessage: 'DISCONNECT',
-                })}
+                id: 'modalBroker.disconnect',
+                defaultMessage: 'DISCONNECT',
+              })}
           </Button>
         </div>
       </Form>
@@ -202,4 +188,4 @@ class BrokerAuthorization extends Component {
 
 BrokerAuthorization.propTypes = propTypes;
 
-export default injectIntl(Form.create()(BrokerAuthorization));
+export default injectIntl((BrokerAuthorization));

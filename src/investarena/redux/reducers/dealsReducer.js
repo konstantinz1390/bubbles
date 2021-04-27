@@ -1,17 +1,14 @@
 import _ from 'lodash';
+import { AUTHORIZE_BROKER_SUCCESS, DISCONNECT_BROKER_SUCCESS } from '../actions/brokersActions';
 import {
-  AUTHORIZE_BROKER_SUCCESS,
-  DISCONNECT_BROKER_SUCCESS,
-} from '../../redux/actions/brokersActions';
-import {
-  GET_OPEN_DEALS_SUCCESS,
-  GET_CLOSE_DEALS_SUCCESS,
-  GET_POST_DEALS_SUCCESS,
-  CREATE_POST_OPEN_DEAL_SUCCESS,
   CHANGE_OPEN_DEAL_SUCCESS,
   CLOSE_OPEN_DEAL_SUCCESS,
-} from '../../redux/actions/dealsActions';
-import { LOGOUT } from '../../../client/auth/authActions';
+  CREATE_POST_OPEN_DEAL_SUCCESS,
+  GET_CLOSE_DEALS_SUCCESS,
+  GET_OPEN_DEALS_SUCCESS,
+  GET_POST_DEALS_SUCCESS,
+  SET_LIMIT_ORDERS,
+} from '../actions/dealsActions';
 
 const initialState = { open: {}, closed: {}, postDeals: {} };
 
@@ -41,7 +38,13 @@ function createPostOpenDealSuccess(state, action) {
   };
 }
 
-export default function(state = initialState, action) {
+export function createLimitOrders(state, action) {
+  const sortOrders = { ...state, limitOrders: {} };
+  action.payload.forEach(item => sortOrders.limitOrders[item.orderId] = item);
+  return sortOrders;
+}
+
+export default function dealsReducer(state = initialState, action) {
   switch (action.type) {
     case GET_OPEN_DEALS_SUCCESS:
       return { ...state, open: action.payload };
@@ -58,8 +61,10 @@ export default function(state = initialState, action) {
     case AUTHORIZE_BROKER_SUCCESS:
     case DISCONNECT_BROKER_SUCCESS:
       return { ...state, open: {}, closed: {} };
-    case LOGOUT:
-      return initialState;
+    case SET_LIMIT_ORDERS:
+      return createLimitOrders(state, action);
+    // case LOGOUT:
+    //   return initialState;
     default:
       return state;
   }
