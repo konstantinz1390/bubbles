@@ -7,6 +7,7 @@ import './App.css';
 import { Counter } from './features/counter/Counter';
 import ModalBroker from './investarena/components/Modals/ModalBroker';
 import { toggleModal } from './investarena/redux/actions/modalsActions';
+import i18nConfig from './investarena/locales';
 
 function App() {
   const { Header } = Layout;
@@ -17,7 +18,7 @@ function App() {
   };
 
   return (
-    <IntlProvider locale="en" messages={{}}>
+    <IntlProvider locale="en" messages={i18nConfig.en.messages}>
       <div className="App">
         <header className="App-header">
           <Counter/>
