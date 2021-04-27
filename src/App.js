@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import './App.css';
 import { Counter } from './features/counter/Counter';
 import ModalBroker from './investarena/components/Modals/ModalBroker';
+import { disconnectBroker } from './investarena/redux/actions/brokersActions';
 import { toggleModal } from './investarena/redux/actions/modalsActions';
 import i18nConfig from './investarena/locales';
 
@@ -13,61 +14,20 @@ function App() {
   const { Header } = Layout;
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleClickConnect = () => {
     dispatch(toggleModal('broker'));
+  };
+  const handleClickDisconnect = () => {
+    dispatch(disconnectBroker());
   };
 
   return (
     <IntlProvider locale="en" messages={i18nConfig.en.messages}>
       <div className="App">
-        <header className="App-header">
-          <Counter/>
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-        </header>
         <Layout>
           <Header>
-            <Button type="primary" onClick={handleClick}>Your broker</Button>
-            <Button type="primary" danger>Disconnect</Button>
+            <Button type="primary" onClick={handleClickConnect}>Your broker</Button>
+            <Button type="primary" danger onClick={handleClickDisconnect}>Disconnect</Button>
           </Header>
         </Layout>
         <ModalBroker/>

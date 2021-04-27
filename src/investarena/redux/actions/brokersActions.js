@@ -1,9 +1,12 @@
 import { message } from 'antd';
-import Cookies from 'js-cookie';
 import api from '../../configApi/apiResources';
+import { getFormattedMessage } from '../../helpers/localesHelper';
+import { clearBrokersData } from '../../helpers/localStorageHelpers';
 import { singleton } from '../../platform/singletonPlatform';
+import { deleteCookieClient } from './cookies';
 import { toggleModal } from './modalsActions';
 import { authorizeToken, connectPlatform } from './platformActions';
+import { updateActiveQuotes } from './quotesSettingsActions';
 
 export const AUTHORIZE_BROKER_REQUEST = 'AUTHORIZE_BROKER_REQUEST';
 export const AUTHORIZE_BROKER_SUCCESS = 'AUTHORIZE_BROKER_SUCCESS';
@@ -71,26 +74,26 @@ export function disconnectTokenSuccess() {
 }
 
 export function authorizeBroker(data) {
-  return dispatch => {
+  return (dispatch) => {
+
     dispatch(authorizeBrokerRequest());
-    return api.brokers.authorizeBroker(data, 'en-UK').then(({ status, error, broker }) => {
-      if (!error && status) {
-        if (status === 'success') {
-          dispatch(authorizeBrokerSuccess());
-          dispatch(authorizeToken(broker.token));
-          singleton.closeWebSocketConnection();
-          singleton.platform = data.platform;
-          singleton.createWebSocketConnection();
-          dispatch(toggleModal('broker'));
-        } else if (status === 'error') {
+    // return api.brokers.authorizeBroker(data, getLanguageState(getState()))
+    const language = 'en';
+    return api.brokers.authorizeBroker(data, language)
+      .then(({ status, message: resMessage, error = '', broker, response = '' }) => {
+        if (!error && status && resMessage) {
+          if (status === 'success') {
+            dispatch(handleAuthBrokerSuccess(data.broker_name, broker.token));
+            dispatch(toggleModal('broker'));
+          } else if (status === 'error') {
+            dispatch(authorizeBrokerError());
+          }
+          message[status](resMessage);
+        } else {
           dispatch(authorizeBrokerError());
+          message.error(resMessage);
         }
-        message.success('Successfully connected to broker');
-      } else {
-        dispatch(authorizeBrokerError());
-        message.error(error.toString());
-      }
-    });
+      });
   };
 }
 export function registerBroker(registrationData) {
@@ -114,24 +117,20 @@ export function registerBroker(registrationData) {
     });
   };
 }
-export function disconnectBroker(isReconnect = false) {
-  return dispatch => {
-    localStorageKeys.forEach(data => {
-      localStorage.removeItem(data);
-    });
-    cookiesData.forEach(data => {
-      Cookies.remove(data);
-      localStorage.removeItem(data);
-    });
+export function disconnectBroker() {
+  return (dispatch) => {
+    clearBrokersData();
+    deleteCookieClient(...cookiesData);
     dispatch(disconnectTokenSuccess());
-    if (singleton.platform && singleton.platform.platformName)
-      message.success('Broker successfully disconnected');
+    dispatch(updateActiveQuotes([]));
     singleton.closeWebSocketConnection();
     singleton.platform = 'widgets';
     singleton.createWebSocketConnection();
-    if (!isReconnect) {
-      dispatch(toggleModal('broker'));
-    }
+    message.success(getFormattedMessage(
+      'en',
+      'brokerAction.disconnectBrokerSuccess',
+      'Broker was successfully disconnected.',
+    ));
     return { type: DISCONNECT_BROKER_SUCCESS };
   };
 }
@@ -187,5 +186,15 @@ export function forgotPassBroker(data) {
         message.error(error.toString());
       }
     });
+  };
+}
+
+export function handleAuthBrokerSuccess(brokerName, token = '') {
+  return dispatch => {
+    dispatch(authorizeBrokerSuccess());
+    if (token) dispatch(authorizeToken(token));
+    singleton.closeWebSocketConnection();
+    singleton.platform = brokerName;
+    singleton.createWebSocketConnection();
   };
 }

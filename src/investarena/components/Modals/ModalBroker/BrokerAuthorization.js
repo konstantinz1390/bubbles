@@ -71,22 +71,26 @@ class BrokerAuthorization extends Component {
           </Select>
         </FormItem>
         {!this.props.brokerConnected ? (
-          <FormItem name={'email'} rules={[
-            {
-              type: 'email',
-              message: this.props.intl.formatMessage({
-                id: 'tooltip.emailValid',
-                defaultMessage: 'Please enter a valid email',
-              }),
-            },
-            {
-              required: true,
-              message: this.props.intl.formatMessage({
-                id: 'tooltip.empty',
-                defaultMessage: 'Please fill in this field',
-              }),
-            },
-          ]}>
+          <FormItem
+            name={'email'}
+            rules={[
+              {
+                type: 'email',
+                message: this.props.intl.formatMessage({
+                  id: 'tooltip.emailValid',
+                  defaultMessage: 'Please enter a valid email',
+                }),
+              },
+              {
+                required: true,
+                message: this.props.intl.formatMessage({
+                  id: 'tooltip.empty',
+                  defaultMessage: 'Please fill in this field',
+                }),
+              },
+            ]}
+            initialValue={'antonki@123software.ru'}
+          >
             <Input
               // prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
               placeholder="E-mail"
@@ -99,22 +103,26 @@ class BrokerAuthorization extends Component {
           </div>
         )}
         {!this.props.brokerConnected && (
-          <FormItem name={'password'} rules={[
-            {
-              required: true,
-              message: this.props.intl.formatMessage({
-                id: 'broker_modal_enter_password',
-                defaultMessage: 'Please input your Password!',
-              }),
-            },
-            {
-              min: 5,
-              message: this.props.intl.formatMessage({
-                id: 'broker_modal_valid_password',
-                defaultMessage: 'Require more then 5 symbols',
-              }),
-            },
-          ]}>
+          <FormItem
+            name={'password'}
+            rules={[
+              {
+                required: true,
+                message: this.props.intl.formatMessage({
+                  id: 'broker_modal_enter_password',
+                  defaultMessage: 'Please input your Password!',
+                }),
+              },
+              {
+                min: 5,
+                message: this.props.intl.formatMessage({
+                  id: 'broker_modal_valid_password',
+                  defaultMessage: 'Require more then 5 symbols',
+                }),
+              },
+            ]}
+            initialValue={'aa123456'}
+          >
             <Input.Password
               // prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
               // type="password"

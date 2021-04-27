@@ -1,3 +1,4 @@
+import { getFormattedMessage } from '../helpers/localesHelper';
 import { getBrokersFormatter, getBrokerFormatter } from './utils/brokersFormatter';
 import Base from './Base';
 import config from '../configApi/config';
@@ -24,32 +25,48 @@ export default class Brokers extends Base {
       };
     });
   }
-  authorizeBroker(data) {
-    return this.apiClient.post(config.brokers.brokerAuthorization, data).then(response => {
-      let status = 'error';
-      if (response.data) {
-        switch (response.data.code) {
-          case 1:
-            status = 'success';
-            // message = locale.messages['brokerAction.authorizeBrokerSuccess'];
-            setLocalStorageBroker(data.platform, response.data);
-            break;
-          case 2:
-            // message = locale.messages['brokerAction.authorizeBrokerErrorCredentials'];
-            break;
-          default:
-            // message = locale.messages['brokerAction.authorizeBrokerError'];
-            break;
+  authorizeBroker(data, language = 'en') {
+    return this.apiClient.post(config.brokers.brokerAuthorization, data)
+      .then(response => {
+        let status = 'error';
+        let message = '';
+        let broker = {};
+        if (!response.data) {
+          message = getFormattedMessage(
+            language,
+            'brokerAction.authorizeBrokerError',
+            'There are problems with the connection to the broker. Please try again later.',
+          );
         }
-      }
-      return {
-        headers: response.headers,
-        status,
-        message: '',
-        error: response.error,
-        broker: response.data,
-      };
-    });
+        if (response.data && response.data.broker) {
+          broker = response.data.broker;
+          switch (response.data.broker.code) {
+            case 1:
+              status = 'success';
+              message = getFormattedMessage(
+                language,
+                'brokerAction.authorizeBrokerSuccess',
+                'Broker was successfully connected',
+              );
+              setLocalStorageBroker(data.broker_name, broker);
+              break;
+            case 2:
+              message = getFormattedMessage(
+                language,
+                'brokerAction.authorizeBrokerErrorCredentials',
+                'Invalid credentials',
+              );
+              break;
+            default:
+              message = getFormattedMessage(
+                language,
+                'brokerAction.authorizeBrokerError',
+                'There are problems with the connection to the broker. Please try again later.',
+              );
+          }
+        }
+        return ({ headers: response.headers, status, message, error: response.error, broker });
+      });
   }
   registerBroker(data) {
     return this.apiClient.post(config.brokers.brokerRegistration, data).then(response => {

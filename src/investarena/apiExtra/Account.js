@@ -6,24 +6,20 @@ class Account {
   logonWithToken(token) {
     return axios({
       method: 'POST',
-      url: `${config.logonWithToken[Cookies.get('platformName')]}${token}`,
+      url: `${config[process.env.NODE_ENV].logonWithToken[Cookies.get('platformName')]}${token}`,
       withCredentials: true,
       cache: false,
       dataType: 'json',
       crossDomain: true,
-      xhrFields: {
-        withCredentials: true,
-      },
-    }).then(
-      response => {
+      xhrFields: { withCredentials: true },
+    })
+      .then(response => {
         return response;
-      },
-      xhr => {
+      }, xhr => {
         const response = { error: {} };
         response.error.toString = () => `Response from broker: ${xhr.response.data.message}`;
         return response;
-      },
-    );
+      });
   }
 }
 
