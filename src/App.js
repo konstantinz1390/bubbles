@@ -9,6 +9,8 @@ import ModalBroker from './investarena/components/Modals/ModalBroker';
 import i18nConfig from './investarena/locales';
 import { getLanguageState } from './investarena/redux/selectors/languageSelectors';
 import './utils/bootstrap/bootstrap-grid.scss';
+import { Content } from 'antd/lib/layout/layout';
+import CryptoBubbles from './investarena/components/CryptoBubbles';
 
 function App() {
   const language = useSelector(getLanguageState);
@@ -17,6 +19,9 @@ function App() {
       <div className="App">
         <Layout>
           <Header/>
+            <Layout.Content>
+                <CryptoBubbles />
+            </Layout.Content>
         </Layout>
         <ModalBroker/>
       </div>
