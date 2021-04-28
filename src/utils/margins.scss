@@ -1,0 +1,28 @@
+@import 'Var';
+
+@mixin marginStyle ($position, $size) {
+  .st-margin-#{$position}-#{$size} {
+    @if $size == 'small' {
+      margin-#{$position}: $margin-small;
+    } @else if $size == 'middle' {
+      margin-#{$position}: $margin-middle;
+    } @else if $size == 'large' {
+      margin-#{$position}: $margin-large;
+    }
+  }
+}
+
+@include marginStyle('top', 'small');
+@include marginStyle('right', 'small');
+@include marginStyle('bottom', 'small');
+@include marginStyle('left', 'small');
+
+@include marginStyle('top', 'middle');
+@include marginStyle('right', 'middle');
+@include marginStyle('bottom', 'middle');
+@include marginStyle('left', 'middle');
+
+@include marginStyle('top', 'large');
+@include marginStyle('right', 'large');
+@include marginStyle('bottom', 'large');
+@include marginStyle('left', 'large');

@@ -1,0 +1,27 @@
+<svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="24" height="17.1429" rx="2" fill="white"/>
+  <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="18">
+    <rect width="24" height="17.1429" rx="2" fill="white"/>
+  </mask>
+  <g mask="url(#mask0)">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 2.28571H24V0H0V2.28571Z" fill="#369D0C"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 17.1429H24V14.8572H0V17.1429Z" fill="#369D0C"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 6.85719H24V4.57147H0V6.85719Z" fill="#369D0C"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12.5714H24V10.2857H0V12.5714Z" fill="#369D0C"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.2857H24V6.85715H0V10.2857Z" fill="#262626"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 4.57139H24V2.28568H0V4.57139Z" fill="#FFD40E"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 14.8571H24V12.5714H0V14.8571Z" fill="#FFD40E"/>
+    <path d="M-0.476217 16.4762V0.666667H-0.222248L10.3174 8.57143L-0.222248 16.4762H-0.476217Z" fill="white"
+          stroke="#262626" stroke-width="1.33333"/>
+    <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M3.42852 9.68569L1.74914 10.8829L2.36877 8.91574L0.711219 7.6885L2.77356 7.66993L3.42852 5.71426L4.08348 7.66993L6.14583 7.6885L4.48827 8.91574L5.10791 10.8829L3.42852 9.68569Z"
+          fill="url(#paint0_linear)"/>
+  </g>
+  <defs>
+    <linearGradient id="paint0_linear" x1="0.571381" y1="5.71426" x2="0.571381" y2="11.4285"
+                    gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F12F1F"/>
+      <stop offset="1" stop-color="#DE2010"/>
+    </linearGradient>
+  </defs>
+</svg>

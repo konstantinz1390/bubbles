@@ -1,0 +1,736 @@
+@import './Var';
+@import './margins';
+@import './overlay';
+@import './spiner';
+@import './tooltip';
+//add next line to your component scss file.
+//@import '../.././utils/Mixins.scss';
+
+//form
+//@include formStyle ()
+@mixin formStyle() {
+  .field {
+    width: 100%;
+    height: 35px;
+    font-size: 14px;
+    text-indent: 5px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 0 6px;
+    box-sizing: border-box;
+
+    &:focus {
+      @include input-selected;
+    }
+  }
+  .label {
+    color: $color-basalt-grey;
+  }
+  button {
+    text-transform: uppercase;
+  }
+  .st-field-div {
+    height: 35px;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  .Select {
+    margin-bottom: 15px;
+
+    .Select-control {
+      border-radius: 2px;
+      height: 35px;
+
+      .Select-input {
+        input {
+          line-height: 1.4rem; // vertical align works the same
+          height: 1.8rem; //  in FireFox and Chrome
+        }
+      }
+
+      &[disabled] {
+        background-color: #ebebe4;
+      }
+    }
+
+    &.is-disabled {
+      .Select-control {
+        cursor: default;
+      }
+    }
+  }
+  .is-focused > .Select-control {
+    @include input-selected;
+  }
+  .is-disabled > .Select-control {
+    @include input-disabled;
+  }
+}
+
+.st-eye-icon {
+  position: absolute;
+  height: 12px;
+  width: 24px;
+  top: 20px;
+  right: 24px;
+  cursor: pointer;
+}
+
+.st-poz-relative {
+  position: relative;
+
+  .st-eye-icon {
+    top: 6px !important;
+  }
+}
+
+.st-eye-icon-main {
+  position: absolute;
+  height: 12px;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+}
+
+@mixin input-selected {
+  border-color: dodgerblue;
+  outline: none;
+}
+
+@mixin input-disabled {
+  background-color: #ebebe4;
+  cursor: none;
+  outline: none;
+}
+
+@mixin triangle($size: 10px, $color: black, $degree: -45deg, $top: 0, $left: 0) {
+  content: '';
+  position: absolute;
+  top: $top;
+  left: $left;
+  transform: rotate($degree);
+  width: 0;
+  height: 0;
+  border-left: $size solid transparent;
+  border-right: $size solid transparent;
+  border-bottom: $size solid $color;
+}
+
+//icon
+//@include iconStyle ($height, $width, $color)
+@mixin iconStyle($height, $width, $color) {
+  height: $height;
+  width: $width;
+  g {
+    fill: $color
+  }
+}
+
+//header
+//@include headerStyle ($height-header, 100%, $color-dark-gray, $margin-large);
+@mixin headerStyle($height, $width, $backgroundColor, $paddingHorizontal) {
+  height: $height;
+  width: $width;
+  background-color: $backgroundColor;
+  padding: 0 $paddingHorizontal;
+}
+
+//container
+//@include containerStyle (400px, 300px, $margin-large, $color-white)
+@mixin containerStyle($height, $width, $padding, $color) {
+  height: $height;
+  width: $width;
+  padding: $padding;
+  background-color: $color;
+}
+
+//field
+//@include fieldStyle ($height, $width, $padding-left, $font-size, $color)
+@mixin fieldStyle($height, $width, $padding-left, $font-size, $color) {
+  height: $height;
+  width: $width;
+  padding-left: $padding-left;
+  font-size: $font-size;
+  color: $color;
+}
+
+//button
+//@include buttonStyle($button-medium, 13px, bold);
+@mixin buttonStyle($height, $width, $fontWeight) {
+  height: $height;
+  width: $width;
+  text-transform: uppercase;
+  font-weight: $fontWeight; //normal or bold
+  font-size: $font-size-small;
+  border-radius: $height;
+}
+
+//select
+
+//card
+//@include cardStyle (100%, $padding)
+@mixin cardStyle($width, $padding) {
+  display: flex;
+  align-items: center;
+  width: $width;
+  padding: $padding;
+}
+
+//text
+//@include textStyle($font-size-medium, $color-white, bold);
+@mixin textStyle($fontSize, $fontColor, $fontWeight) {
+  font-size: $fontSize;
+  color: $fontColor;
+  font-weight: $fontWeight;
+}
+
+//avatar
+//@include avatarStyle ($avatar-large)
+@mixin avatarStyle($avatarSize) {
+  size: $avatarSize;
+}
+
+//avatar
+//@include tabArrowStyle (5px, 4px, $color-white)
+@mixin tabArrowStyle($offset-y, $offset-x, $color) {
+  content: '';
+  display: block;
+  position: relative;
+  top: $offset-y;
+  left: $offset-x;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid $color;
+  margin: auto;
+}
+
+//truncate text
+//@include truncate()
+@mixin truncate($max_width) {
+  max-width: $max_width;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+//stickyFooter
+@mixin stickyFooterStyle($html_min_height, $html_position, $body_margin_bottom) {
+  html {
+    min-height: $html_min_height;
+    position: $html_position;
+  }
+  body {
+    margin-bottom: $body_margin_bottom;
+    height: 100%;
+    padding: 0;
+  }
+}
+
+//@include stickyFooterStyle(100%, relative, 100px !important);
+
+
+@mixin arrowDownStyle($border-color: #666) {
+  border: solid $border-color;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+@mixin arrowUpStyle($border-color: #666) {
+  border: solid $border-color;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+//keyframes
+//@include sessionIndicator
+@mixin sessionIndicator {
+  @-moz-keyframes rollGreen {
+    0% {
+      box-shadow: 0 0 3px 1px rgba(59, 188, 83, 0);
+    }
+    25% {
+      box-shadow: 0 0 3px 2px rgba(59, 188, 83, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 4px 3px rgba(59, 188, 83, 0.4);
+    }
+    51% {
+      box-shadow: 0 0 5px 4px rgba(59, 188, 83, 0.5);
+    }
+    60% {
+      box-shadow: 0 0 4px 3px rgba(59, 188, 83, 0.4);
+    }
+    75% {
+      box-shadow: 0 0 3px 2px rgba(59, 188, 83, 0.3);
+    }
+    100% {
+      box-shadow: 0 0 3px 1px rgba(59, 188, 83, 0);
+    }
+  }
+  @keyframes rollGreen {
+    0% {
+      box-shadow: 0 0 3px 1px rgba(59, 188, 83, 0);
+    }
+    25% {
+      box-shadow: 0 0 3px 2px rgba(59, 188, 83, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 4px 3px rgba(59, 188, 83, 0.4);
+    }
+    51% {
+      box-shadow: 0 0 5px 4px rgba(59, 188, 83, 0.5);
+    }
+    60% {
+      box-shadow: 0 0 4px 3px rgba(59, 188, 83, 0.4);
+    }
+    75% {
+      box-shadow: 0 0 3px 2px rgba(59, 188, 83, 0.3);
+    }
+    100% {
+      box-shadow: 0 0 3px 1px rgba(59, 188, 83, 0);
+    }
+  }
+  @-moz-keyframes rollRed {
+    0% {
+      box-shadow: 0 0 3px 1px rgba(233, 55, 0, 0);
+    }
+    25% {
+      box-shadow: 0 0 3px 2px rgba(233, 55, 0, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 4px 3px rgba(233, 55, 0, 0.4);
+    }
+    51% {
+      box-shadow: 0 0 5px 4px rgba(233, 55, 0, 0.5);
+    }
+    60% {
+      box-shadow: 0 0 4px 3px rgba(233, 55, 0, 0.4);
+    }
+    75% {
+      box-shadow: 0 0 3px 2px rgba(233, 55, 0, 0.3);
+    }
+    100% {
+      box-shadow: 0 0 3px 1px rgba(233, 55, 0, 0);
+    }
+  }
+  @keyframes rollRed {
+    0% {
+      box-shadow: 0 0 3px 1px rgba(233, 55, 0, 0);
+    }
+    25% {
+      box-shadow: 0 0 3px 1px rgba(233, 55, 0, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 4px 2px rgba(233, 55, 0, 0.4);
+    }
+    51% {
+      box-shadow: 0 0 5px 3px rgba(233, 55, 0, 0.5);
+    }
+    60% {
+      box-shadow: 0 0 4px 2px rgba(233, 55, 0, 0.4);
+    }
+    75% {
+      box-shadow: 0 0 3px 1px rgba(233, 55, 0, 0.3);
+    }
+    100% {
+      box-shadow: 0 0 3px 1px rgba(233, 55, 0, 0);
+    }
+  }
+}
+
+@mixin st-open-deal-buttonStyle($height, $width, $fontWeight, $color, $backgroundColor, $hoverColor) {
+  @include buttonStyle($height, $width, bold);
+  background-color: $backgroundColor;
+  border-color: $backgroundColor;
+  color: $color;
+  cursor: pointer;
+  font-size: 11px;
+  &:hover {
+    background-color: $hoverColor;
+    color: $color;
+  }
+}
+
+@mixin dealButtonBlue() {
+  @include st-open-deal-buttonStyle($button-medium, fit-content, bold, $color-white, $color-blue, $color-dark-blue);
+  min-width: 45%;
+}
+
+@mixin st-icon-point($color, $animation) {
+  height: 12px;
+  width: 12px;
+  display: block;
+  border-radius: 100%;
+  border: 3px solid $color;
+  animation: $animation 3s infinite ease-in-out;
+}
+
+@mixin st-after-dot {
+  content: '';
+  display: block;
+  border-radius: 100%;
+  height: 2px;
+  width: 2px;
+  background-color: #1a1a1a;
+  margin: 0 3px;
+}
+
+@mixin st-modal($width, $margin-top, $modal-margin: 15) {
+  @include formStyle();
+  width: $width;
+  margin-top: $margin-top;
+  max-width: none;
+  .modal-content {
+    background-color: $color-white;
+
+    .modal-header {
+      background-color: #16254c;
+      color: $color-white;
+      height: 40px;
+
+      .close {
+        outline: none;
+        cursor: pointer;
+        color: $color-white;
+      }
+    }
+
+    .modal-body {
+      padding: $modal-margin;
+    }
+  }
+  .modal-title {
+    @include textStyle($font-size-medium, $color-white, bold);
+  }
+  .modal-text {
+    display: block;
+    text-align: center;
+    @include textStyle($font-size-large, $color-black-blue, bold);
+  }
+  .st-modals-advice-title {
+    @include textStyle($font-size-small, $color-basalt-grey, normal);
+    word-break: break-word;
+    align-self: center;
+  }
+  .st-modal-privacy-input {
+    @include fieldStyle($field-medium, 100%, $margin-middle, $font-size-medium, $color-black-blue);
+  }
+}
+
+@media (max-width: 1215px) {
+  body {
+    overflow-x: auto;
+  }
+  .adaptation-media {
+    position: absolute !important;
+    top: 0 !important;
+    left: auto !important;
+  }
+  //not authorized
+  .st-login-wrap-media {
+    position: absolute !important;
+    right: 15px !important;
+    margin-left: 15px;
+  }
+  .st-form-block-media {
+    position: absolute !important;
+    right: 15px !important;
+    margin-left: 15px;
+  }
+  .st-image-logo-media {
+    visibility: hidden;
+    width: 0 !important;
+  }
+}
+
+@media (max-width: 628px) {
+  //authorized
+  .st-simple-balance {
+    visibility: hidden;
+  }
+  //not authorized
+  .st-logo-media {
+    visibility: hidden;
+  }
+  .st-languages__item-media {
+    margin: 0 12px !important;
+  }
+}
+
+@media (max-height: 830px) {
+  .st-registration-block-media {
+    padding-top: 0 !important;
+  }
+;
+}
+
+#nav, #members {
+  @extend .adaptation-media;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba($color-blue, 1);
+  }
+  100% {
+    box-shadow: 0 0 0 25px rgba(242, 242, 242, 0);
+  }
+}
+
+//@include sidebarBlockHeader($bg-color, $height)
+@mixin sidebarBlockHeader($bg-color, $height) {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  background-color: $bg-color;
+  line-height: $height;
+  padding: 0 15px;
+  margin-top: 10px;
+}
+
+@mixin blockHeader() {
+  @include textStyle(14px, $color-header-text, bold);
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: $color-dark-gray;
+  height: 45px;
+  padding: 0 15px;
+}
+
+//@include modalListRow()
+@mixin modalListRow() {
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1px #ddd;
+  color: $color-black;
+  font-weight: normal;
+  text-decoration: none;
+  transition: background-color 400ms;
+  overflow: hidden;
+  &:hover {
+    background-color: $color-light-gray;
+    color: black;
+    transition: background-color 400ms;
+    cursor: pointer;
+  }
+}
+
+//@include mirrorVertical()
+@mixin mirrorVertical() {
+  -moz-transform: scaleY(-1);
+  -o-transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+  -ms-filter: "FlipH";
+}
+
+@mixin block-title-style($font-size, $color, $font-weight, $display, $align-items, $position, $background-color, $height, $padding) {
+  font-size: $font-size;
+  color: $color;
+  font-weight: $font-weight;
+  display: $display;
+  align-items: $align-items;
+  position: $position;
+  background-color: $background-color;
+  height: $height;
+  padding: $padding;
+}
+
+@mixin nav-item() {
+  width: 50%;
+  cursor: pointer;
+  text-align: center;
+}
+
+@mixin clearSearchValue() {
+  display: none;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 0;
+  top: 20%;
+  font-weight: bold;
+  font-size: 1rem;
+  color: $color-basalt-grey;
+  &.visible {
+    display: block;
+    cursor: pointer;
+  }
+}
+
+@mixin displayFlexModifyPost($justifyContent) {
+  display: flex;
+  justify-content: $justifyContent;
+}
+
+@mixin modalToggler() {
+  display: table;
+  -webkit-tap-highlight-color: transparent;
+  margin-bottom: 1rem;
+
+  input:focus + div {
+    text-decoration: underline;
+  }
+
+  & > div {
+    cursor: pointer;
+    border-radius: 2rem;
+    width: 39px;
+    height: 18px;
+    background: $color-blue;
+    border: 2px solid $color-blue;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    -webkit-transition: 200ms ease-out;
+    transition: 200ms ease-out;
+    font-size: 0;
+  }
+
+  & > div:hover {
+    box-shadow: 0 0 5px $color-blue;
+  }
+
+  & > div:before {
+    will-change: translate;
+    display: block;
+    position: absolute;
+    top: calc(50% - .5rem);
+    left: .07rem;
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    background: $color-white;
+    border-radius: 50%;
+    -webkit-transition: 200ms;
+    transition: 200ms;
+  }
+
+  & > div:after {
+    font-size: 1rem;
+    position: absolute;
+    right: 5px;
+    color: $color-white;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    content: attr(data-off);
+    pointer-events: none;
+  }
+
+  input:checked + div {
+    background: $color-blue;
+    border-color: $color-blue;
+  }
+
+  input:checked + div:before {
+    color: $color-blue;
+    -webkit-transform: translateX(calc(1 * 100% + 5px));
+    transform: translateX(calc(1 * 100% + 5px));
+    background: $color-white;
+  }
+
+  input:checked + div:after {
+    content: attr(data-on);
+    right: 20px;
+  }
+
+  input:focus + div:after {
+    text-decoration: underline;
+  }
+}
+
+@mixin flipperIcon() {
+  display: inline-block;
+  &:hover {
+    cursor: pointer;
+  }
+  img {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+@mixin currentPriceTriangle($direction) {
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+
+  @if $direction == up {
+    border-bottom: 8px solid $color-green;
+  } @else if $direction == down {
+    border-top: 8px solid $color-red;
+  }
+}
+
+@mixin createPostPreview() {
+  border-radius: $border-radius-small;
+  border: 1px solid $color-silver;
+  padding: $margin-middle;
+}
+
+@mixin circleContent($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+}
+
+@mixin containerWithBorderRadius($overflow: hidden) {
+  overflow: $overflow;
+  box-shadow: $box-shadow-main;
+  border-radius: $border-radius-large;
+  border: 1px solid $color-border-grey;
+}
+
+@mixin loadBlockAnimation(){
+  background: linear-gradient(-45deg, $color-light-gray, darken($color-light-gray, 6%));
+  background-size: 200% 200%;
+  animation: gradient 2s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+//apply color to svg img (initial color of svg element must be `black`)
+//@include svgColor($color-name)
+@mixin svgColor($target-color) {
+  @if $target-color == $color-basalt-grey {
+    filter: invert(49%) saturate(5645%) hue-rotate(335deg) brightness(129%) contrast(79%);
+  }
+  @if $target-color == $color-white {
+    filter: invert(100%);
+  }
+  @if $target-color == $color-blue-primary {
+    filter: invert(40%) sepia(65%) saturate(2945%) hue-rotate(205deg) brightness(99%) contrast(85%);
+  }
+  @if $target-color == $color-red {
+    filter: invert(49%) sepia(45%) saturate(3790%) hue-rotate(331deg) brightness(100%) contrast(87%);
+  }
+  @if $target-color == $color-green {
+    filter: invert(58%) sepia(26%) saturate(1225%) hue-rotate(121deg) brightness(102%) contrast(83%);
+  }
+}

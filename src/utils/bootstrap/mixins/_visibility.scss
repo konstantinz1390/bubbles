@@ -1,0 +1,6 @@
+// Visibility
+
+@mixin invisible($visibility) {
+  display: none;
+  visibility: $visibility !important;
+}

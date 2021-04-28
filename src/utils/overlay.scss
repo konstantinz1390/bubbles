@@ -1,0 +1,10 @@
+@mixin overlayStyle ($z-index) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.50;
+    z-index: $z-index;
+    background-color: #000;
+}

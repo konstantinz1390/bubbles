@@ -1,0 +1,113 @@
+[data-tooltip] {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Show the tooltip content */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  opacity: 1;
+  pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  position: absolute;
+  padding: 7px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #b94a48;
+  color: #fff;
+  content: attr(data-tooltip);
+  font-size: 13px;
+  height: 40px;
+}
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+  position: absolute;
+  width: 0;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+}
+
+[data-position="bottom"]:before{
+  min-height: 31px;
+  height: fit-content;
+  height: max-content; // Firefox
+  margin-left: -82.5px;
+  width: 190px;
+  margin-top: 5px;
+  top: 100%;
+  left: calc(50% - 13px);
+}
+[data-position="bottom"]:after{
+  margin-left: -5px;
+  border-bottom: 5px solid #b94a48;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  top: 100%;
+  left: 50%;
+}
+
+[data-position="top"]:before{
+  min-height: 31px;
+  height: fit-content;
+  height: max-content; // Firefox
+  margin-left: -82.5px;
+  width: 190px;
+  margin-bottom: 5px;
+  bottom: 100%;
+  left: calc(50% - 13px);
+}
+[data-position="top"]:after{
+  margin-left: -5px;
+  border-top: 5px solid #b94a48;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  bottom: 100%;
+  left: 50%;
+}
+
+[data-position="left"]:before{
+  width: 190px;
+  min-height: 31px;
+  height: fit-content;
+  height: max-content; // Firefox
+  margin-right: 5px;
+  right: 100%;
+}
+[data-position="left"]:after{
+  border-left: 5px solid #b94a48;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  right: 100%;
+  top: 40%;
+}
+[data-position="right"]:before{
+  width: 190px;
+  min-height: 31px;
+  height: fit-content;
+  height: max-content; // Firefox
+  margin-left: 5px;
+  left: 100%;
+}
+[data-position="right"]:after{
+  border-right: 5px solid #b94a48;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  left: 100%;
+  top: 40%;
+}
+
+.st-input-danger{
+  border-color: #f02c33 !important;
+}

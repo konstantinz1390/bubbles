@@ -1,0 +1,5 @@
+@import "mixins";
+
+@include fontsConnect('OpenSans','OpenSans-Light', normal, 100);
+@include fontsConnect('OpenSans','OpenSans-Regular', normal, 400);
+@include fontsConnect('OpenSans','OpenSans-SemiBold', normal, 600);

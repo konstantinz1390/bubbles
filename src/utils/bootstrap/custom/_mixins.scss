@@ -1,0 +1,14 @@
+@mixin fontsConnect ($alias, $name, $style, $weight) {
+  @font-face {
+    font-family: $alias;
+    src: url("/static/fonts/#{$name}.eot");
+    src: url("/static/fonts/#{$name} + .eot?#iefix") format("embedded-opentype");
+    src: url("/static/fonts/#{$name}.woff") format("woff");
+    src: url("/static/fonts/#{$name}.woff2") format("woff2");
+    src: url("/static/fonts/#{$name}.svg") format("svg");
+    src: url("/static/fonts/#{$name}.ttf") format("truetype");
+    font-style: $style;
+    font-weight: $weight;
+    font-display: swap;
+  }
+}

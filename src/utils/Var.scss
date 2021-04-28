@@ -1,0 +1,102 @@
+@import './colors';
+
+//colors
+$color-dark-green: #17927f;
+$color-black-dark: #000;
+$color-dark-red: #d64b48;
+$color-hover-dark-red: #921925;
+$color-thunderbird: #d21a1a;
+$color-blue: #3a79ee;
+$color-blue-whale: #062e56;
+$color-calypso: #2d7091;
+$color-azure-radiance: #007BFF;
+$color-blue-light: #1367b0;
+$color-dark-blue: #134bad;
+$color-blue-cobalt: #0f49b3;
+$violent-violet: #140c52;
+$color-light-gray: #f5f5f5;
+$color-gray: #E6F0FF;
+$color-silver: #CCC;
+$color-dark-gray: #E4EAF3;
+$color-gray-solitude: #E9ECEF;
+$storm-grey: #686d7e;
+$athens-gray: #F6F7F9;
+$color-alto: #ddd;
+$athens-gray-light: #f7f7f6;
+$color-white: #fff;
+$color-punch: #dc3545;
+$color-black: #444444;
+$color-black-blue: #2c3552;
+$color-blue-transparent: rgba(58, 121, 238, .9);
+$bg-color: #F4F8FF;
+$color-dodger-blue: #236DFB;
+$color-comment-like: #07D;
+$color-desert-storm: #f7f7f6;
+$color-gray-appox: #838383;
+$color-gray-solid: #808080;
+$color-gray-dark: #444;
+$color-gray-eclipse: #404040;
+$color-border-grey: #DCE3EC;
+
+$header_bg: #16254c;
+//grid
+$sidebar-left-width: 230px;
+$sidebar-right-width: 340px;
+$header-inner-height: 60px;
+
+//margins
+$margin-small: 5px;
+$margin-middle: 10px;
+$margin-large: 15px;
+$margin-extra-large: 20px;
+
+$padding-small: 5px;
+$padding-middle: 10px;
+$padding-large: 15px;
+$padding-extra-large: 20px;
+
+//font-sizes
+$font-size-small: 12px;
+$font-size-medium: 14px;
+$font-size-large: 16px;
+
+//avatars
+$avatar-small: 25px;
+$avatar-medium: 32px;
+$avatar-large: 45px;
+$avatar-largest: 145px;
+
+//icons
+$icon-small: 15px;
+$icon-medium: 18px;
+$icon-large: 24px;
+
+//fields
+$field-small: 30px;
+$field-medium: 35px;
+$field-large: 90px;
+
+//buttons
+$button-small: 28px;
+$button-medium: 35px;
+$button-large: 45px;
+
+//header
+$height-header: 45px;
+
+//border-radius
+$border-radius-small: 4px;
+$border-radius-medium: 6px;
+$border-radius-large: 10px;
+
+//blocks header color
+$color-block-header: #D6E0FC;
+$color-header-text: #444;
+
+// left-menu items colors
+$color-menu-item-active: #E6F0FF;
+
+$broker-text-color-gray: #7C97BC;
+
+// box-shadow
+$box-shadow-main: 0px 0px 5px rgba(0, 0, 0, 0.07);

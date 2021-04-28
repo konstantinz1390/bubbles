@@ -1,0 +1,30 @@
+<svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="24" height="17.1429" rx="2" fill="white"/>
+  <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="18">
+    <rect width="24" height="17.1429" rx="2" fill="white"/>
+  </mask>
+  <g mask="url(#mask0)">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 3.42857H24V0H0V3.42857Z" fill="#486BCA"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 17.1429H24V13.7143H0V17.1429Z" fill="#486BCA"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 13.7143H24V3.42857H0V13.7143Z" fill="#FFDF20"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12.5715H24V4.57146H0V12.5715Z" fill="#CF1615"/>
+    <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M12 11.4285C14.8403 11.4285 17.1429 8.57139 17.1429 8.57139C17.1429 8.57139 14.8403 5.71425 12 5.71425C9.15968 5.71425 6.85715 8.57139 6.85715 8.57139C6.85715 8.57139 9.15968 11.4285 12 11.4285Z"
+          fill="white"/>
+    <mask id="mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="6" y="5" width="12" height="7">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M12 11.4285C14.8403 11.4285 17.1429 8.57139 17.1429 8.57139C17.1429 8.57139 14.8403 5.71425 12 5.71425C9.15968 5.71425 6.85715 8.57139 6.85715 8.57139C6.85715 8.57139 9.15968 11.4285 12 11.4285Z"
+            fill="white"/>
+    </mask>
+    <g mask="url(#mask1)">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5715 5.71426H6.85719V11.4285H11.4286L12.5715 5.71426Z"
+            fill="#262626"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M13.1429 9.1428C13.4585 9.1428 13.7143 8.88696 13.7143 8.57137C13.7143 8.25578 13.4585 7.99994 13.1429 7.99994C12.8273 7.99994 12.5715 8.25578 12.5715 8.57137C12.5715 8.88696 12.8273 9.1428 13.1429 9.1428Z"
+            fill="#1A1A1A"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M10.8571 9.1428C11.1727 9.1428 11.4285 8.88696 11.4285 8.57137C11.4285 8.25578 11.1727 7.99994 10.8571 7.99994C10.5415 7.99994 10.2857 8.25578 10.2857 8.57137C10.2857 8.88696 10.5415 9.1428 10.8571 9.1428Z"
+            fill="#F6F6F6"/>
+    </g>
+  </g>
+</svg>
