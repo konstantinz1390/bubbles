@@ -1,0 +1,82 @@
+@import '../../../../utils/Mixins';
+
+.st-header-broker {
+  min-width: 655px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 40% auto;
+  grid-auto-rows: $header-inner-height;
+  grid-column-gap: $margin-large;
+  justify-items: start;
+  align-items: center;
+  color: $color-white;
+
+  &__balance-pl-wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .st-balance-wrap {
+      width: 100%;
+      height: $header-inner-height;
+      padding: 5px 10px;
+      font-size: $font-size-small;
+      line-height: 1.5;
+
+      &--border {
+        border-left: 1px solid $broker-text-color-gray;
+      }
+    }
+  }
+
+  .st-connect-broker-block {
+    height: 100%;
+    display: flex;
+    padding: 8px 8px;
+    min-width: 313px;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid $broker-text-color-gray;
+
+    &.hidden {
+      visibility: hidden;
+    }
+
+    .st-connect-broker-title {
+      position: absolute;
+      top: -13px;
+      left: 120px;
+      font-weight: bold;
+      color: $broker-text-color-gray;
+      z-index: 2;
+      line-height: 20px;
+      padding: 0 10px;
+      background-color: $header_bg;
+    }
+
+    .Select-value {
+      background-color: $broker-text-color-gray;
+    }
+
+    .st-connect-broker-text {
+      align-self: center;
+      margin-right: 10px;
+      color: $broker-text-color-gray;
+    }
+
+    .btn-add-broker {
+      font-family: "OpenSans", sans-serif;
+      padding: 2px;
+      @include st-open-deal-buttonStyle($button-medium, 95px, bold, $color-white, $color-blue, $color-dark-blue);
+    }
+
+    .st-broker-button {
+      font-size: 11px;
+      width: 100px;
+    }
+  }
+}
+

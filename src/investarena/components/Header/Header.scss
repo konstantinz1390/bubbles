@@ -1,0 +1,29 @@
+@import '../../../utils/Mixins.scss';
+
+$header_font: OpenSans-Regular, sans-serif;
+$header_color: #fff;
+$header_padding: 10px 0;
+$link-color: #07D;
+
+.st-header {
+  height: auto;
+  background-color: $header_bg;
+  padding-top: $padding-middle;
+  padding-bottom: $padding-middle;
+
+  &__content {
+    display: grid;
+    grid-template-columns: 130px auto 100px;
+    grid-column-gap: $margin-large;
+    grid-auto-rows: $header-inner-height;
+    justify-items: center;
+    align-items: center;
+  }
+
+  &__logo {
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

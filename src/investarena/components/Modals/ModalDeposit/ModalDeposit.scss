@@ -1,0 +1,44 @@
+@import "../../../../utils/Mixins.scss";
+
+.st-header-deposit {
+  width: 100%;
+
+  .btn.btn-primary.btn-add-broker {
+    width: 100%;
+    margin: 0;
+
+    &.disconnected {
+      display: none;
+    }
+  }
+}
+.modal-deposit {
+  width: 1230px;
+  margin-top: 50px;
+  max-width: none;
+
+  .modal-content {
+    background-color: $color-white;
+
+    .modal-header {
+      background-color: #16254c;
+      color: $color-white;
+      height: 40px;
+
+      .close {
+        outline: none;
+        cursor: pointer;
+        color: $color-white;
+      }
+
+      .modal-title {
+        @include textStyle($font-size-medium, $color-white, bold);
+      }
+    }
+
+    .modal-body {
+      padding: 15px;
+    }
+  }
+}
+

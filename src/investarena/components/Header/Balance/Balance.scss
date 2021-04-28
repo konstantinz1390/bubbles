@@ -1,0 +1,12 @@
+@import "../../../../utils/Mixins";
+
+.st-balance-text {
+  margin-bottom: $margin-small;
+  font-weight: bold;
+  color: $broker-text-color-gray;
+  white-space: nowrap;
+}
+
+.st-balance-amount {
+  font-weight: bold;
+}
