@@ -6,7 +6,6 @@ import { singleton } from '../../platform/singletonPlatform';
 import { deleteCookieClient } from './cookies';
 import { toggleModal } from './modalsActions';
 import { authorizeToken, connectPlatform } from './platformActions';
-import { updateActiveQuotes } from './quotesSettingsActions';
 
 export const AUTHORIZE_BROKER_REQUEST = 'AUTHORIZE_BROKER_REQUEST';
 export const AUTHORIZE_BROKER_SUCCESS = 'AUTHORIZE_BROKER_SUCCESS';
@@ -20,17 +19,6 @@ export const FORGOT_PASS_BROKER_ERROR = 'FORGOT_PASS_BROKER_ERROR';
 export const DISCONNECT_BROKER_SUCCESS = 'DISCONNECT_BROKER_SUCCESS';
 export const DISCONNECT_TOKEN_SUCCESS = 'DISCONNECT_BROKER_SUCCESS';
 
-const localStorageKeys = [
-  'sid',
-  'stompUser',
-  'stompPassword',
-  'um_session',
-  'broker_id',
-  'WEBSRV',
-  'token',
-  'accounts',
-  'email',
-];
 const cookiesData = ['platformName'];
 
 export function authorizeBrokerRequest() {
@@ -122,7 +110,6 @@ export function disconnectBroker() {
     clearBrokersData();
     deleteCookieClient(...cookiesData);
     dispatch(disconnectTokenSuccess());
-    dispatch(updateActiveQuotes([]));
     singleton.closeWebSocketConnection();
     singleton.platform = 'widgets';
     singleton.createWebSocketConnection();

@@ -1,19 +1,19 @@
-import _difference from 'lodash/difference';
 import _filter from 'lodash/filter';
 import _size from 'lodash/size';
 import _sortBy from 'lodash/sortBy';
 import config from '../configApi/config';
 import { REDEFINED_TICK_SIZES } from '../constants/constantsWidgets';
 import { PLATFORM_FACTOR } from '../constants/platform';
-import {
-  connectPlatformSuccess,
-  connectPlatformError,
-  updateUserAccountCurrency,
-  updateUserStatistics, setUserTradingSettings,
-} from '../redux/actions/platformActions';
 import { getChartDataSuccess } from '../redux/actions/chartsActions';
+import {
+  connectPlatformError,
+  connectPlatformSuccess,
+  setUserTradingSettings,
+  updateUserAccountCurrency,
+  updateUserStatistics,
+} from '../redux/actions/platformActions';
 import { updateQuotes } from '../redux/actions/quotesActions';
-import { updateActiveQuotes, updateQuotesSettings } from '../redux/actions/quotesSettingsActions';
+import { updateQuotesSettings } from '../redux/actions/quotesSettingsActions';
 
 export class Widgets {
   constructor() {
@@ -147,11 +147,11 @@ export class Widgets {
           this.publish(q.Name, this.quotes[q.Name]);
         }
       });
-      const diff = _difference(Object.keys(this.quotes), this.activeQuotes);
-      if (diff.length) {
-        this.activeQuotes.push(...diff);
-        this.dispatch(updateActiveQuotes(this.activeQuotes.sort()));
-      }
+      // const diff = _difference(Object.keys(this.quotes), this.activeQuotes);
+      // if (diff.length) {
+      //   this.activeQuotes.push(...diff);
+      //   this.dispatch(updateActiveQuotes(this.activeQuotes.sort()));
+      // }
       this.dispatch(updateQuotes(data));
     }
   }

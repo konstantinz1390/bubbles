@@ -1,6 +1,5 @@
 import { message } from 'antd';
 import Cookies from 'js-cookie';
-import _difference from 'lodash/difference';
 import _filter from 'lodash/filter';
 import _map from 'lodash/map';
 import _size from 'lodash/size';
@@ -16,18 +15,20 @@ import {
   changeOpenDealPlatformSuccess,
   closeOpenDealPlatformSuccess,
   getCloseDealsSuccess,
-  getOpenDealsSuccess, setLimitOrders,
+  getOpenDealsSuccess,
+  setLimitOrders,
   updateClosedDealsForStatistics,
 } from '../redux/actions/dealsActions';
 import {
   connectPlatformError,
-  connectPlatformSuccess, setUserTradingSettings,
+  connectPlatformSuccess,
+  setUserTradingSettings,
   updateUserAccountCurrency,
   updateUserAccounts,
   updateUserStatistics,
 } from '../redux/actions/platformActions';
 import { updateQuotes } from '../redux/actions/quotesActions';
-import { updateActiveQuotes, updateQuotesSettings } from '../redux/actions/quotesSettingsActions';
+import { updateQuotesSettings } from '../redux/actions/quotesSettingsActions';
 import { CMD, EVT, HOURS } from './platformData';
 
 export class Umarkets {
@@ -162,16 +163,30 @@ export class Umarkets {
     // this.getFavorites();
     // this.getLimitStopOrders();
   }
-  getServerTime () { this.sendRequestToPlatform(CMD.getTime) }
-  getUserAccount () { this.sendRequestToPlatform(CMD.getUserAccount) }
-  getUserSettings () { this.sendRequestToPlatform(CMD.getUserSettings) }
-  getUserStatistics () { this.sendRequestToPlatform(CMD.getUserStatistics) }
-  getUserRates () { this.sendRequestToPlatform(CMD.getUserRates) }
-  getOpenDeals () { this.sendRequestToPlatform(CMD.getOpenDeals) }
-  getClosedDeals (period = 'LAST_7_DAYS') {
+  getServerTime() {
+    this.sendRequestToPlatform(CMD.getTime);
+  }
+  getUserAccount() {
+    this.sendRequestToPlatform(CMD.getUserAccount);
+  }
+  getUserSettings() {
+    this.sendRequestToPlatform(CMD.getUserSettings);
+  }
+  getUserStatistics() {
+    this.sendRequestToPlatform(CMD.getUserStatistics);
+  }
+  getUserRates() {
+    this.sendRequestToPlatform(CMD.getUserRates);
+  }
+  getOpenDeals() {
+    this.sendRequestToPlatform(CMD.getOpenDeals);
+  }
+  getClosedDeals(period = 'LAST_7_DAYS') {
     this.sendRequestToPlatform(CMD.getClosedDeals, [period, null, null]);
   }
-  getLimitStopOrders () { this.sendRequestToPlatform(CMD.getLimitStopOrders) }
+  getLimitStopOrders() {
+    this.sendRequestToPlatform(CMD.getLimitStopOrders);
+  }
   // getAppIdentity(callerKey) {
   //   return JSON.stringify({
   //     OS: getOS(),
@@ -224,7 +239,7 @@ export class Umarkets {
   //     }
   //   }
   // }
-  sendRequestToPlatform (cmd, params) {
+  sendRequestToPlatform(cmd, params) {
     if (
       this.websocket !== null &&
       this.websocket.readyState === 1 &&
@@ -304,7 +319,8 @@ export class Umarkets {
         case CMD.login:
           this.onConnect();
           break;
-        default: break;
+        default:
+          break;
       }
     } else if (result.data.type === 'event') {
       switch (result.data.name) {
@@ -344,7 +360,8 @@ export class Umarkets {
         // case CMD.dealOpenedByStopOrder:
         //   this.dealOpenByLimitOrder(result);
         //   break;
-        default: break;
+        default:
+          break;
       }
     } else if (result.data.type === 'error') {
       this.onError(result.data);
@@ -394,11 +411,11 @@ export class Umarkets {
         this.publish(security, this.quotes[security]);
       }
     });
-    const diff = _difference(Object.keys(this.quotes), this.activeQuotes);
-    if (diff.length) {
-      this.activeQuotes.push(...diff);
-      this.dispatch(updateActiveQuotes(this.activeQuotes.sort()));
-    }
+    // const diff = _difference(Object.keys(this.quotes), this.activeQuotes);
+    // if (diff.length) {
+    //   this.activeQuotes.push(...diff);
+    //   this.dispatch(updateActiveQuotes(this.activeQuotes.sort()));
+    // }
     this.dispatch(updateQuotes(data));
   }
   fixChange(security, quote, oldQuote) {
@@ -621,5 +638,5 @@ export class Umarkets {
       return limitOrder;
     });
     this.dispatch(setLimitOrders(limitOrders));
-  }
+  };
 }
