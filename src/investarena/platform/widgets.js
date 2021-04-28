@@ -35,13 +35,11 @@ export class Widgets {
     const dispatchErrTimer = setTimeout(() => this.dispatch(connectPlatformError()), 3000);
     this.websocket = new WebSocket(config[process.env.NODE_ENV].brokerWSUrl.widgets);
     this.websocket.onopen = () => {
-      console.log('onopen');
       clearInterval(dispatchErrTimer);
       this.dispatch(connectPlatformSuccess('widgets'));
       this.onConnect();
     };
     this.websocket.onerror = (evt) => {
-      console.log('onerror', evt.message);
       clearInterval(dispatchErrTimer);
       this.dispatch(connectPlatformError());
       this.onError(evt);
@@ -49,7 +47,6 @@ export class Widgets {
     this.websocket.onmessage = (evt) => {
       this.onWebSocketMessage(evt.data);
     };
-    console.log(config[process.env.NODE_ENV].brokerWSUrl.widgets);
   }
   closeWebSocketConnection() {
     if (this.websocket) {
