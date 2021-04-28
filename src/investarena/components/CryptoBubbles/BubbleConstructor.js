@@ -136,6 +136,7 @@ BubblesCanvas.prototype.calculateDistance = function (currentBubble, otherBubble
 };
 
 BubblesCanvas.prototype.getNewDirection = function (collisionPoint, currentBubble, otherBubble) {
+    const staticWeight = 200;
     const collisionDistance = Math.sqrt(Math.pow(currentBubble.x - collisionPoint.x, 2) + Math.pow(currentBubble.y - collisionPoint.y, 2));
     const firstBasisVectorX = (collisionPoint.x - currentBubble.x) / collisionDistance;
     const firstBasisVectorY = (collisionPoint.y - currentBubble.y) / collisionDistance;
@@ -145,16 +146,10 @@ BubblesCanvas.prototype.getNewDirection = function (collisionPoint, currentBubbl
     const velocityTan = (currentBubble.dx * secondBasisVectorX + currentBubble.dy * secondBasisVectorY);
     const velocityNormalOtherBubble = (otherBubble.dx * firstBasisVectorX + otherBubble.dy * firstBasisVectorY);
     const velocityTanOtherBubble = (otherBubble.dx * secondBasisVectorX + otherBubble.dy * secondBasisVectorY);
-    const velocityNormalModified =
-        (2 * otherBubble.weight * velocityNormalOtherBubble + (currentBubble.weight - otherBubble.weight) * velocityNormal) /
-        (currentBubble.weight + otherBubble.weight);
-    const velocityNormalOtherBubbleModified =
-        (2 * currentBubble.weight * velocityNormal + (otherBubble.weight - currentBubble.weight) * velocityNormalOtherBubble) /
-        (currentBubble.weight + otherBubble.weight);
-    currentBubble.dx = velocityNormalModified * firstBasisVectorX + velocityTan * secondBasisVectorX;
-    currentBubble.dy = velocityNormalModified * firstBasisVectorY + velocityTan * secondBasisVectorY;
-    otherBubble.dx = velocityNormalOtherBubbleModified * firstBasisVectorX + velocityTanOtherBubble * secondBasisVectorX;
-    otherBubble.dy = velocityNormalOtherBubbleModified * firstBasisVectorY + velocityTanOtherBubble * secondBasisVectorY;
+    currentBubble.dx = velocityNormalOtherBubble * firstBasisVectorX + velocityTan * secondBasisVectorX;
+    currentBubble.dy = velocityNormalOtherBubble * firstBasisVectorY + velocityTan * secondBasisVectorY;
+    otherBubble.dx = velocityNormal * firstBasisVectorX + velocityTanOtherBubble * secondBasisVectorX;
+    otherBubble.dy = velocityNormal * firstBasisVectorY + velocityTanOtherBubble * secondBasisVectorY;
 };
 
 BubblesCanvas.prototype.start = function () {
