@@ -23,7 +23,7 @@ BubblesCanvas.prototype.addBubbles = function (dealsList) {
 BubblesCanvas.prototype.updateDeals = function (deals) {
     this.bubbleList.forEach(bubble => {
         bubble.radius = deals[bubble.id].size;
-        bubble.pips = deals[bubble.id].pips;
+        bubble.pnl = deals[bubble.id].pnl;
         bubble.itemColor = deals[bubble.id].itemColor;
         bubble.labelSize = deals[bubble.id].labelSize;
     });
@@ -75,7 +75,7 @@ BubblesCanvas.prototype.draw = function () {
         this.context.textAlign = 'center';
         this.context.fillStyle = currentBubble.itemColor;
         this.context.font = `bold ${currentBubble.labelSize * 0.7}px Arial`;
-        this.context.fillText(`${currentBubble.side.toUpperCase() === DEAL_SIDE.BUY ? 'Buy' : 'Sell'} ${currentBubble.pips} pips`, currentBubble.x, currentBubble.y + currentBubble.radius * 0.3);
+        this.context.fillText(`${currentBubble.side.toUpperCase() === DEAL_SIDE.BUY ? 'Buy' : 'Sell'} ${currentBubble.pnl}$`, currentBubble.x, currentBubble.y + currentBubble.radius * 0.3);
         this.context.closePath();
     });
 };
@@ -118,7 +118,7 @@ BubblesCanvas.prototype.createBall = function (x, y, deal) {
         dx: randomX,
         dy: randomY,
         collisionList,
-        pips: deal.pips,
+        pnl: deal.pnl,
         labelSize: deal.labelSize,
         instrumentName: deal.instrumentName,
         side: deal.side,

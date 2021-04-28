@@ -10,7 +10,8 @@ class CryptoBubbles extends React.Component {
         this.canvasBubbles.start();
     }
     componentDidUpdate(prevProps) {
-        if(_isEqual(this.props.deals, prevProps.deals)) {
+        if(!_isEqual(this.props.deals, prevProps.deals)) {
+            console.log(this.props.deals);
             const deals = _keyBy(this.props.deals, 'dealId');
             this.canvasBubbles.updateDeals(deals);
         }
