@@ -1,0 +1,12 @@
+@import '../../../.././utils/Mixins.scss';
+
+.st-account-switcher {
+  width: 185px;
+  margin-right: $margin-large;
+
+  .ant-select {
+    width: 100%;
+  }
+
+  .st-broker-select-platform {}
+}

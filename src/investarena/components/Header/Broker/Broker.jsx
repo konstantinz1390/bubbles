@@ -27,11 +27,11 @@ const Broker = () => {
 
   const isBrokerConnected = useMemo(() => platformName !== 'widgets', [platformName]);
   const brokerBtn = useMemo(() => isBrokerConnected ? (
-    <Button type="primary" danger onClick={handleClickDisconnect}>
+    <Button type="primary st-broker-button" danger onClick={handleClickDisconnect}>
       {intl.formatMessage({ id: 'modalBroker.disconnect', defaultMessage: 'DISCONNECT' })}
     </Button>
   ) : (
-    <Button type="primary" onClick={handleClickConnect}>
+    <Button type="primary st-broker-button" onClick={handleClickConnect}>
       {intl.formatMessage({ id: 'headerAuthorized.buttonConnectBroker', defaultMessage: 'Your broker' })}
     </Button>
   ), [isBrokerConnected]);

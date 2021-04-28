@@ -13,31 +13,33 @@
   }
 }
 .modal-deposit {
-  width: 1230px;
-  margin-top: 50px;
-  max-width: none;
+  width: 1230px !important;
 
-  .modal-content {
+  .ant-modal-content {
     background-color: $color-white;
+    line-height: 1.5;
 
-    .modal-header {
+    .ant-modal-close {
+      outline: none;
+      cursor: pointer;
+      color: $color-white;
+      font-weight: bold;
+    }
+
+    .ant-modal-header {
       background-color: #16254c;
       color: $color-white;
-      height: 40px;
+      padding: $padding-large;
 
-      .close {
-        outline: none;
-        cursor: pointer;
-        color: $color-white;
-      }
-
-      .modal-title {
+      .ant-modal-title {
         @include textStyle($font-size-medium, $color-white, bold);
       }
     }
 
-    .modal-body {
-      padding: 15px;
+    .ant-modal-body {
+      width: auto;
+      height: auto;
+      padding: $padding-large;
     }
   }
 }

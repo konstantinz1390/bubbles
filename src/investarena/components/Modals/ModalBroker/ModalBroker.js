@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { injectIntl } from 'react-intl';
 import ModalBrokerTab from '../ModalBroker/ModalBrokerTab';
-import './ModalBroker.less';
+import './ModalBroker.scss';
 
 const propTypes = {
   forgotPassBroker: PropTypes.func.isRequired,
@@ -27,6 +27,7 @@ const ModalBroker = props => (
     onCancel={props.toggleModal}
     style={{ maxWidth: '600px' }}
     width={null}
+    className="modal-broker"
   >
     <ModalBrokerTab
       isLoading={props.isLoading}

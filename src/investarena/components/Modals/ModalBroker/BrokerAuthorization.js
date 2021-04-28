@@ -144,12 +144,6 @@ class BrokerAuthorization extends Component {
           {/* <span /> */}
           {/* )} */}
           <span/>
-          <Checkbox onChange={this.handleOneClickTrading} checked={this.state.checked}>
-            {this.props.intl.formatMessage({
-              id: 'modalBroker.oneClickTrade',
-              defaultMessage: 'One click trade',
-            })}
-          </Checkbox>
         </div>
         <div className="d-flex flex-column align-items-center st-margin-bottom-middle">
           <div className="st-broker-text">

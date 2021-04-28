@@ -1,15 +1,15 @@
 @import '../../../../utils/Mixins';
 
 .st-header-broker {
-  min-width: 655px;
   width: 100%;
   display: grid;
-  grid-template-columns: 40% auto;
+  grid-template-columns: auto 315px;
   grid-auto-rows: $header-inner-height;
   grid-column-gap: $margin-large;
-  justify-items: start;
+  justify-content: space-between;
   align-items: center;
   color: $color-white;
+  line-height: 1.5;
 
   &__balance-pl-wrap {
     width: 100%;
@@ -23,7 +23,6 @@
       height: $header-inner-height;
       padding: 5px 10px;
       font-size: $font-size-small;
-      line-height: 1.5;
 
       &--border {
         border-left: 1px solid $broker-text-color-gray;
@@ -34,7 +33,7 @@
   .st-connect-broker-block {
     height: 100%;
     display: flex;
-    padding: 8px 8px;
+    padding: $padding-large;
     min-width: 313px;
     position: relative;
     justify-content: space-between;
@@ -74,8 +73,9 @@
     }
 
     .st-broker-button {
-      font-size: 11px;
-      width: 100px;
+      font-size: $font-size-small;
+      min-width: 115px;
+      margin: 0;
     }
   }
 }

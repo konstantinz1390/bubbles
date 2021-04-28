@@ -3,12 +3,13 @@ import _map from 'lodash/map';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
-import { singleton } from '../../platform/singletonPlatform';
+import { singleton } from '../../../platform/singletonPlatform';
 import {
   getIsLoadingPlatformState,
   getPlatformCurrentAccountState,
   getPlatformUserAccountsState,
-} from '../../redux/selectors/platformSelectors';
+} from '../../../redux/selectors/platformSelectors';
+import './AccountSwitcher.scss';
 
 const AccountSwitcher = () => {
   const currentAccountName = useSelector(getPlatformCurrentAccountState);
@@ -45,9 +46,6 @@ const AccountSwitcher = () => {
             options={accountsOptions}
             value={accountName}
             onChange={changeAccount}
-            // clearable={false}
-            // searchable={false}
-            // data-empty={intl.formatMessage({ id: 'tooltip.empty', defaultMessage: 'Please fill in this field' })}
           />
         </div>
       ) : (
