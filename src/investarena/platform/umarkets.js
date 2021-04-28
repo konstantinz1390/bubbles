@@ -20,6 +20,7 @@ import {
   updateClosedDealsForStatistics,
 } from '../redux/actions/dealsActions';
 import {
+  changeUserAccount,
   connectPlatformError,
   connectPlatformSuccess,
   setUserTradingSettings,
@@ -186,6 +187,10 @@ export class Umarkets {
   }
   getLimitStopOrders() {
     this.sendRequestToPlatform(CMD.getLimitStopOrders);
+  }
+  changeAccount(accountName) {
+    this.sendRequestToPlatform(CMD.changeAccount, [accountName]);
+    this.dispatch(changeUserAccount());
   }
   // getAppIdentity(callerKey) {
   //   return JSON.stringify({

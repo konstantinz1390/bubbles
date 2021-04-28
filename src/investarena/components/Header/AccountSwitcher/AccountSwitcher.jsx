@@ -1,6 +1,6 @@
 import { Select } from 'antd';
 import _map from 'lodash/map';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import { singleton } from '../../platform/singletonPlatform';
@@ -16,14 +16,23 @@ const AccountSwitcher = () => {
   const isLoading = useSelector(getIsLoadingPlatformState);
   const intl = useIntl();
 
+  const [accountName, setAccountName] = useState(currentAccountName);
+
   const accountsOptions = useMemo(() => _map(accounts, account => ({
     value: account.id,
     label: account.name,
   })), [accounts]);
 
-  const changeAccount = (value) => {
+  const changeAccount = (value, option) => {
     singleton.platform.changeAccount(value);
+    setAccountName(option.label)
   };
+
+  useEffect(() => {
+    if (currentAccountName && !accountName) {
+      setAccountName(currentAccountName);
+    }
+  }, [currentAccountName, accountName])
 
   return (
     <div className="st-account-switcher">
@@ -34,7 +43,7 @@ const AccountSwitcher = () => {
             disabled={isLoading}
             dropdownClassName="st-broker-select-platform"
             options={accountsOptions}
-            value={currentAccountName}
+            value={accountName}
             onChange={changeAccount}
             // clearable={false}
             // searchable={false}

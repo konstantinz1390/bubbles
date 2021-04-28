@@ -9,6 +9,7 @@ import {
   REGISTER_BROKER_REQUEST,
 } from '../actions/brokersActions';
 import {
+  CHANGE_USER_ACCOUNT,
   CONNECT_PLATFORM_ERROR,
   CONNECT_PLATFORM_REQUEST,
   CONNECT_PLATFORM_SUCCESS,
@@ -31,7 +32,7 @@ const initialState = {
   accounts: [],
 };
 
-export default function platformReducer (state = initialState, action) {
+export default function platformReducer(state = initialState, action) {
   switch (action.type) {
     case CONNECT_PLATFORM_REQUEST:
       return {
@@ -64,6 +65,7 @@ export default function platformReducer (state = initialState, action) {
     case UPDATE_USER_ACCOUNTS:
       return {
         ...state,
+        isLoading: false,
         currentAccountName: action.payload.currentAccountName,
         accounts: action.payload.accounts,
       };
@@ -71,6 +73,7 @@ export default function platformReducer (state = initialState, action) {
     case FORGOT_PASS_BROKER_REQUEST:
     case REGISTER_BROKER_REQUEST:
       return { ...state, isLoading: true };
+    case CHANGE_USER_ACCOUNT:
     case AUTHORIZE_BROKER_SUCCESS:
     case AUTHORIZE_BROKER_ERROR:
     case REGISTER_BROKER_ERROR:

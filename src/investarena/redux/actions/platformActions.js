@@ -13,6 +13,7 @@ export const GET_CHART_DATA_SUCCESS = 'GET_CHART_DATA_SUCCESS';
 export const UPDATE_USER_ACCOUNT_CURRENCY = 'UPDATE_USER_ACCOUNT_CURRENCY';
 export const UPDATE_USER_ACCOUNTS = 'UPDATE_USER_ACCOUNTS';
 export const USER_TRADING_SETTINGS = 'USER_TRADING_SETTINGS';
+export const CHANGE_USER_ACCOUNT = 'CHANGE_USER_ACCOUNT';
 
 const localStorageData = [
   'sid',
@@ -90,4 +91,7 @@ export function connectPlatformError() {
 }
 export function setUserTradingSettings(payload) {
   return { type: USER_TRADING_SETTINGS, payload };
+}
+export function changeUserAccount() {
+  return { type: CHANGE_USER_ACCOUNT };
 }
